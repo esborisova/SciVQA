@@ -7,12 +7,15 @@ The SciVQA is a corpus of chart images extrected from scientific publications in
 * [ACL-Fig dataset](https://huggingface.co/datasets/citeseerx/ACL-fig) (Zeba Karishma et. al, 2023)
 * [SciGraphQA dataset](https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0) (Shengzhi Li and Nima Tajbakhsh, 2023)
 
+
 ## Dataset statistics
 
-| Venue | N of unique papers | Total N of chart images | Total N of QA pairs | 
-|-------|--------------------|-------------------------|---------------------|
-|       |                    |                         |                     | 
-
+| Source data | N of unique papers | Total N of chart images | Total N of QA pairs | 
+|-------------|--------------------|-------------------------|---------------------|
+|  ACL-Fig    |   530              |   948                   |                     | 
+|  SciGraphQA |   6106             |   10730                 |                     | 
+|-------------|--------------------|-------------------------|---------------------|
+|  Total      |   6636             |   11678                 |                     | 
 
 | Question types | N in ACL papers | N in arXiv papers| 
 |----------------|-----------------|------------------|
