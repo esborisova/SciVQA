@@ -6,8 +6,7 @@ Scientific Visual Question Answering shared task
 The SciVQA is a corpus of chart images extracted from scientific publications in Computational Linguistics available in arXiv and ACL Anthology. SciVQA is a subset of the two existing datasets:
 * [ACL-Fig](https://huggingface.co/datasets/citeseerx/ACL-fig) (Zeba Karishma et. al, 2023)
 * [SciGraphQA](https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0) (Shengzhi Li and Nima Tajbakhsh, 2023)
-
-The SciVQA can be dowloaded from Zenodo: 
+The SciVQA comprises 11678 images in .png format and can be dowloaded from Zenodo: 
 
 ## Dataset statistics
 
