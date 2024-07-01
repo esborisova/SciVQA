@@ -4,8 +4,8 @@ Scientific Visual Question Answering shared task
 # Data
 
 The SciVQA is a corpus of chart images extracted from scientific publications in Computational Linguistics available in arXiv and ACL Anthology. SciVQA is a subset of the two existing datasets:
-* [ACL-Fig dataset](https://huggingface.co/datasets/citeseerx/ACL-fig) (Zeba Karishma et. al, 2023)
-* [SciGraphQA dataset](https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0) (Shengzhi Li and Nima Tajbakhsh, 2023)
+* [ACL-Fig](https://huggingface.co/datasets/citeseerx/ACL-fig) (Zeba Karishma et. al, 2023)
+* [SciGraphQA](https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0) (Shengzhi Li and Nima Tajbakhsh, 2023)
 
 The SciVQA can be dowloaded from Zenodo: 
 
@@ -24,4 +24,5 @@ The SciVQA can be dowloaded from Zenodo:
 # Contributors
 
 Ekaterina Borisova (DFKI)
+
 Raia Abu Ahmad (DFKI)
