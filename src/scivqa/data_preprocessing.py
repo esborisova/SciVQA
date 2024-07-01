@@ -1,6 +1,7 @@
 from typing import List
 from tqdm import tqdm
 import pandas as pd
+import os
 
 
 def clean_text_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
@@ -37,3 +38,37 @@ def detect_en_lang(
                 doc._.language == "en" and doc._.language_score >= language_score
             )
     return languages
+
+
+def remove_files(
+    rootdir: str,
+    target_files: List[str],
+    subdirs: List[str] = None,
+    is_recursive: bool = False,
+):
+    """
+    Removes files not in the target list from the specified directory (and optionally its subdirectories).
+
+    Args:
+        rootdir (str): The root directory to start searching for files.
+        target_files (List[str]): List of filenames to keep.
+        subdirs (List[str], optional): List of subdirectories within the rootdir to search (if not specified, searches rootdir directly).
+        is_recursive (bool, optional): Whether to search recursively in subdirectories.
+    """
+
+    def remove_in_directory(directory):
+        for item in os.listdir(directory):
+            if not item.startswith("."):
+                item_path = os.path.join(directory, item)
+                if os.path.isdir(item_path) and is_recursive:
+                    remove_in_directory(item_path)
+                elif os.path.isfile(item_path) and item not in target_files:
+                    os.remove(item_path)
+
+    if subdirs:
+        for subdir in subdirs:
+            path = os.path.join(rootdir, subdir)
+            if os.path.isdir(path):
+                remove_in_directory(path)
+    else:
+        remove_in_directory(rootdir)
