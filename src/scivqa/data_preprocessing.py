@@ -2,6 +2,7 @@ from typing import List
 from tqdm import tqdm
 import pandas as pd
 import os
+import shutil
 
 
 def clean_text_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
@@ -72,3 +73,32 @@ def remove_files(
                 remove_in_directory(path)
     else:
         remove_in_directory(rootdir)
+
+
+def copy_files(
+    rootdir: str,
+    target_files: List[str],
+    subdirs: List[str] = None,
+    dest_dir: str = None,
+):
+    """
+    Copy specified files from rootdir (and optionally subdirs) to dest_dir.
+
+    Args:
+        rootdir (str): The root directory to search for files.
+        target_files (List[str]): A list of file names to copy.
+        subdirs (List[str]): A list of subdirectories to search within rootdir.
+        dest_dir (str): The destination directory where files should be copied.
+    """
+    if subdirs:
+        for subdir in subdirs:
+            current_dir = os.path.join(rootdir, subdir)
+            for file_name in target_files:
+                source_file = os.path.join(current_dir, file_name)
+                if os.path.exists(source_file):
+                    shutil.copy2(source_file, dest_dir)
+    else:
+        for file_name in target_files:
+            source_file = os.path.join(rootdir, file_name)
+            if os.path.exists(source_file):
+                shutil.copy2(source_file, dest_dir)
