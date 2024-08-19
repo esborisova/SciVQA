@@ -4,7 +4,7 @@ from vertexai.preview import tokenization
 
 def main():
     df = pd.read_pickle("../../data/scivqa_data_3000.pkl")
-    prompts = pd.read_csv("../../prompts_gemini.csv")
+    prompts = pd.read_csv("../../data/prompts_gemini.csv")
 
     model_name = "gemini-1.5-flash-001"
     tokenizer = tokenization.get_tokenizer_for_model(model_name)
