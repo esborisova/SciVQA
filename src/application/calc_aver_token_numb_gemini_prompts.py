@@ -11,9 +11,9 @@ def main():
 
     all_tokens = []
 
-    for row, index in prompts.iterrows():
-        for r, i in df.iterrows():
-            prompt = f'Task: {prompts["task"][row]}\nCaption: {df["caption"][r]}\nConstraints:\n{prompts["constraints"][row]}\nOutput Format: {prompts["output_format"][row]}\nExamples: {prompts["examples"][row]}'
+    for index, row in prompts.iterrows():
+        for idx, r in df.iterrows():
+            prompt = f'Task: {prompts["task"][index]}\nCaption: {df["caption"][idx]}\nConstraints:\n{prompts["constraints"][index]}\nOutput Format: {prompts["output_format"][index]}\nExamples: {prompts["examples"][index]}'
             n_tokens = tokenizer.count_tokens(prompt)
             all_tokens.append(n_tokens.total_tokens)
 
