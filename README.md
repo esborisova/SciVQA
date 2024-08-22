@@ -1,8 +1,4 @@
-<p align="center">
-<img src="SciVQA.gif" alt="drawing" width="200"/>
-  <br>
-  <strong>Scientific Visual Question Answering shared task</strong>
-</p>
+# <img src="./logos/SciVQA-6.gif" alt="drawing" width="300"/>
 
 
 # Data
