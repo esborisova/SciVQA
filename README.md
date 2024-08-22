@@ -1,6 +1,9 @@
-![](SciVQA.gif)
+<p align="center">
+<img src="SciVQA.gif" alt="drawing" width="200"/>
+  <br>
+  <strong>Scientific Visual Question Answering shared task</strong>
+</p>
 
-Scientific Visual Question Answering shared task
 
 # Data
 
