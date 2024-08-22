@@ -1,4 +1,5 @@
-# SciVQA
+![](SciVQA.gif)
+
 Scientific Visual Question Answering shared task
 
 # Data
