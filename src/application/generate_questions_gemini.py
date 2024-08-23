@@ -17,12 +17,11 @@ def main():
     prompts = pd.read_csv("../../data/prompts_gemini.csv")
 
     batch_index = 1
-    count = 0
-    
+
     chart_ids = []
     qa_pair_types = []
     questions = []
-
+    captions = []
 
     for index, row in df.iterrows():
         for idx, r in prompts.iterrows():
@@ -36,37 +35,47 @@ def main():
             img = PIL.Image.open(image_path)
 
             prompt = f'Task: {prompts["task"][idx]}\nCaption: {df["caption"][index]}\nConstraints:\n{prompts["constraints"][idx]}\nOutput Format: {prompts["output_format"][idx]}\nExamples: {prompts["examples"][idx]}'
-            response = model.generate_content([prompt, img])
-            result = response.text
+            try:
+                response = model.generate_content([prompt, img])
+                result = response.text
+            except Exception as e:
+                error_type = type(e).__name__
+                error_message = str(e)
+                result = f"Error: {error_type}, error message: {error_message}"
+
+                print(f"Error type: {error_type}")
+                print(f"Error message: {error_message}")
 
             chart_ids.append(df["chart_id"][index])
             qa_pair_types.append(prompts["qa_type"][idx])
             questions.append(result)
-        
-        count += 1
+            captions.append(df["captions"][index])
 
-        if count % 500 == 0:
-            print(f"Processed {count} images, saving batch {batch_index}...")
-            
-            columns = ["chart_id", "qa_pair_type", "gemini_generated_questions"]
+        if (index + 1) % 100 == 0:
+            print(f"Processed {index} images, saving batch {batch_index}...")
+
+            columns = ["chart_id", "caption", "qa_pair_type", "gemini_qa_pairs"]
             results_df = pd.DataFrame(columns=columns)
 
             results_df["chart_id"] = chart_ids
+            results_df["caption"] = captions
             results_df["qa_pair_type"] = qa_pair_types
-            results_df["gemini_generated_questions"] = questions
+            results_df["gemini_qa_pairs"] = questions
 
-            output_filename = f"../../data/gemini/batch_{batch_index}.pkl"
+            output_filename = f"../../data/gemini_results/batch_{batch_index}.pkl"
             results_df.to_pickle(output_filename)
             print(f"Saved batch {batch_index} to {output_filename}")
 
             chart_ids.clear()
             qa_pair_types.clear()
             questions.clear()
+            captions.clear()
 
             batch_index += 1
-            
+
             print(f"Sleeping for 60 seconds...")
-            time.sleep(10)
+            time.sleep(60)
+
 
 if __name__ == "__main__":
     main()
