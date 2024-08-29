@@ -4,9 +4,16 @@
 # Data
 
 The SciVQA is a corpus of chart images extracted from scientific publications in Computational Linguistics available in arXiv and ACL Anthology. SciVQA is a subset of the two existing datasets:
-* [ACL-Fig](https://huggingface.co/datasets/citeseerx/ACL-fig) (Zeba Karishma et. al, 2023)
-* [SciGraphQA](https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0) (Shengzhi Li and Nima Tajbakhsh, 2023)
-The SciVQA comprises 11678 images in .png format and can be dowloaded from Zenodo: 
+- __ACL-Fig: A Dataset for Scientific Figure Classification.__
+
+
+  _Zeba Karishma, Shaurya Rohatgi, Kavya Shrinivas Puranik, Jian Wu, C. Lee Giles._  <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <img src='https://img.shields.io/badge/PDF-blue'> <a href='https://arxiv.org/abs/2301.12293'> <img src='https://img.shields.io/badge/Dataset-gold'> <a href='https://huggingface.co/datasets/citeseerx/ACL-fig'>
+
+- __SciGraphQA: A Large-Scale Synthetic Multi-Turn Question-Answering Dataset for Scientific Graphs.__
+
+  _Shengzhi Li, Nima Tajbakhsh._ <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <img src='https://img.shields.io/badge/PDF-blue'> <a href='https://arxiv.org/abs/2308.03349'> <img src='https://img.shields.io/badge/Dataset-gold'> <a href='https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0'>
+
+The SciVQA comprises 11678 images in .png format and can be dowloaded from Zenodo or HF: links to be added...
 
 ## Dataset statistics
 
