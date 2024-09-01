@@ -3,9 +3,11 @@ import PIL.Image
 import os
 import time
 import google.generativeai as genai
+from ..utils.gemini import save_batch
 
 API_key = ""
 scigraphqa_imgs_rootdir = "../../data/scigraphqa_images_2052/"
+output_filename_root = "../../data/gemini_results/chart_class_scigraphqa/"
 
 
 def main():
@@ -51,22 +53,20 @@ def main():
         if (index + 1) % 500 == 0:
             print(f"Processed {index} images, saving batch {batch_index}...")
 
-            columns = ["chart_id", "caption", "figure_type"]
-            results_df = pd.DataFrame(columns=columns)
-
-            results_df["chart_id"] = chart_ids
-            results_df["caption"] = captions
-            results_df["figure_type"] = types
-
-            output_filename = f"../../data/gemini_results/chart_class_scigraphqa/batch_{batch_index}.pkl"
-            results_df.to_pickle(output_filename)
-            print(f"Saved batch {batch_index} to {output_filename}")
-
+            output_filename = os.path.join(
+                output_filename_root, f"batch_{batch_index}.pkl"
+            )
+            save_batch(batch_index, output_filename, chart_ids, captions, types)
             chart_ids.clear()
             types.clear()
             captions.clear()
 
             batch_index += 1
+
+    if chart_ids:
+        print(f"Saving final batch {batch_index}...")
+        output_filename = os.path.join(output_filename_root, f"batch_{batch_index}.pkl")
+        save_batch(batch_index, output_filename, chart_ids, captions, types)
 
 
 if __name__ == "__main__":

@@ -3,10 +3,12 @@ import PIL.Image
 import os
 import time
 import google.generativeai as genai
+from ..utils.gemini import save_batch
 
 API_key = ""
 scigraphqa_imgs_rootdir = "../../data/scigraphqa_images_2052/"
 acl_imgs_rootdir = "../../data/aclfig_images/"
+output_filename_root = "../../data/gemini_results/"
 
 
 def main():
@@ -49,22 +51,23 @@ def main():
             chart_ids.append(df["chart_id"][index])
             qa_pair_types.append(prompts["qa_type"][idx])
             questions.append(result)
-            captions.append(df["captions"][index])
+            captions.append(df["caption"][index])
 
         if (index + 1) % 100 == 0:
             print(f"Processed {index} images, saving batch {batch_index}...")
 
-            columns = ["chart_id", "caption", "qa_pair_type", "gemini_qa_pairs"]
-            results_df = pd.DataFrame(columns=columns)
-
-            results_df["chart_id"] = chart_ids
-            results_df["caption"] = captions
-            results_df["qa_pair_type"] = qa_pair_types
-            results_df["gemini_qa_pairs"] = questions
-
-            output_filename = f"../../data/gemini_results/batch_{batch_index}.pkl"
-            results_df.to_pickle(output_filename)
-            print(f"Saved batch {batch_index} to {output_filename}")
+            output_filename = os.path.join(
+                output_filename_root, f"batch_{batch_index}.pkl"
+            )
+            save_batch(
+                batch_index,
+                output_filename,
+                chart_ids,
+                captions,
+                qa_pair_types,
+                questions,
+            )
+            print(f"Saved batch {batch_index}..")
 
             chart_ids.clear()
             qa_pair_types.clear()
@@ -75,6 +78,14 @@ def main():
 
             print(f"Sleeping for 60 seconds...")
             time.sleep(60)
+
+    if chart_ids:
+        print(f"Saving final batch {batch_index}...")
+
+        output_filename = os.path.join(output_filename_root, f"batch_{batch_index}.pkl")
+        save_batch(
+            batch_index, output_filename, chart_ids, captions, qa_pair_types, questions
+        )
 
 
 if __name__ == "__main__":
