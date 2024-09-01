@@ -3,7 +3,7 @@ import PIL.Image
 import os
 import time
 import google.generativeai as genai
-from ..utils.gemini import save_batch
+from ..utils.gemini import save_batch, run_gemini
 
 API_key = ""
 scigraphqa_imgs_rootdir = "../../data/scigraphqa_images_2052/"
@@ -31,16 +31,7 @@ def main():
         img = PIL.Image.open(image_path)
 
         prompt = f'Task: You are given an image of a figure and its caption extracted from a scholarly paper. Classify this figure into one of the following types: bar chart, box plot, confusion matrix, line chart, map, pie chart, scatter plot, pareto chart, venn diagram, architecture diagram, neural networks, trees.\nCaption: {df["caption"][index]}\nOutput format: JSON, with a single object containing the figure type.\nExample: [{{"type": ""}}].'
-        try:
-            response = model.generate_content([prompt, img])
-            result = response.text
-        except Exception as e:
-            error_type = type(e).__name__
-            error_message = str(e)
-            result = f"Error: {error_type}, error message: {error_message}"
-
-            print(f"Error type: {error_type}")
-            print(f"Error message: {error_message}")
+        result = run_gemini(model, prompt, img)
 
         chart_ids.append(scigraph_subset["chart_id"][index])
         types.append(result)

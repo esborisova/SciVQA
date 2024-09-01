@@ -3,7 +3,7 @@ import PIL.Image
 import os
 import time
 import google.generativeai as genai
-from ..utils.gemini import save_batch
+from ..utils.gemini import save_batch, run_gemini
 
 API_key = ""
 scigraphqa_imgs_rootdir = "../../data/scigraphqa_images_2052/"
@@ -37,17 +37,8 @@ def main():
             img = PIL.Image.open(image_path)
 
             prompt = f'Task: {prompts["task"][idx]}\nCaption: {df["caption"][index]}\nConstraints:\n{prompts["constraints"][idx]}\nOutput Format: {prompts["output_format"][idx]}\nExamples: {prompts["examples"][idx]}'
-            try:
-                response = model.generate_content([prompt, img])
-                result = response.text
-            except Exception as e:
-                error_type = type(e).__name__
-                error_message = str(e)
-                result = f"Error: {error_type}, error message: {error_message}"
-
-                print(f"Error type: {error_type}")
-                print(f"Error message: {error_message}")
-
+            result = run_gemini(model, prompt, img)
+            
             chart_ids.append(df["chart_id"][index])
             qa_pair_types.append(prompts["qa_type"][idx])
             questions.append(result)
