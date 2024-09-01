@@ -18,22 +18,20 @@ def run_gemini(model, prompt: str, img) -> str:
 def create_df(
     chart_ids: list, captions: list, types: list, questions: list = None
 ) -> pd.DataFrame:
-    if questions:
-        columns = ["chart_id", "caption", "qa_pair_type", "gemini_qa_pairs"]
+    if questions is not None:
+        results_df = pd.DataFrame(
+            {
+                "chart_id": chart_ids,
+                "caption": captions,
+                "qa_pair_type": types,
+                "gemini_qa_pairs": questions,
+            }
+        )
 
-        results_df = pd.DataFrame(columns=columns)
-        results_df["chart_id"] = chart_ids
-        results_df["caption"] = captions
-        results_df["qa_pair_type"] = types
-        results_df["gemini_qa_pairs"] = questions
-
-    columns = ["chart_id", "caption", "chart_type"]
-
-    results_df = pd.DataFrame(columns=columns)
-    results_df["chart_id"] = chart_ids
-    results_df["caption"] = captions
-    results_df["chart_type"] = types
-
+    else:
+        results_df = pd.DataFrame(
+            {"chart_id": chart_ids, "caption": captions, "chart_type": types}
+        )
     return results_df
 
 
@@ -45,9 +43,10 @@ def save_batch(
     types: list,
     questions: list = None,
 ):
-    if questions:
+    if questions is not None:
         df = create_df(chart_ids, captions, types, questions)
-    df = create_df(chart_ids, captions, types)
+    else:
+        df = create_df(chart_ids, captions, types)
 
     df.to_pickle(output_filename)
     print(f"Saved batch {batch_index} to {output_filename}")
