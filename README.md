@@ -16,11 +16,11 @@ The SciVQA comprises 11678 images in .png format and can be dowloaded from Zenod
 
 ## Dataset statistics
 
-| Source data | N of unique papers | Total N of chart images | Total N of QA pairs | 
-|-------------|--------------------|-------------------------|---------------------|
-|  ACL-Fig    |   530              |   948                   |                     | 
-|  SciGraphQA |   1750             |   2052                 |                     | 
-|  **Total**  |   **2280**         |   **3000**             |                     | 
+| Source data | N of unique papers | N of chart images | N of QA pairs | 
+|-------------|--------------------|-------------------|---------------|
+|  ACL-Fig    |   530              |   948             |               | 
+|  SciGraphQA |   1750             |   2052            |               | 
+|  **Total**  |   **2280**         |   **3000**        |               | 
 
 | Question types | N in ACL papers | N in arXiv papers| 
 |----------------|-----------------|------------------|
