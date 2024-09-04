@@ -26,7 +26,7 @@ The SciVQA comprises 11678 images in .png format and can be dowloaded from Zenod
 |----------------|-----------------|------------------|
 |                |                 |                  |             
 
-Details on the papers distribution per year and venue are availabel under [utils](https://github.com/esborisova/SciVQA/blob/main/src/utils/papers_dist.png).
+Details on the papers distribution per year and venue are availabel under [utils](https://github.com/esborisova/SciVQA/blob/main/src/utils/papers_dist_3000.png).
 **Note:** Currently all images and metadata files are stored on Pegasus and HF under private repository.
 
 # Contributors
