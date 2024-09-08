@@ -2,7 +2,7 @@
 Since ACL-fig contains only 948 intries, we randomly sample only data from SciGraphQA"""
 
 import pandas as pd
-from ..scivqa.data_preprocessing import copy_files
+from ..utils.data_preprocessing import copy_files
 
 
 def main():

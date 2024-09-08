@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from typing import List
-from ..scivqa.data_preprocessing import remove_files
+from ..utils.data_preprocessing import remove_files
 
 
 def main():

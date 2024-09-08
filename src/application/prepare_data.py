@@ -2,7 +2,7 @@ import pandas as pd
 import regex as re
 import spacy
 import spacy_fastlang
-from ..scivqa.data_preprocessing import clean_text_columns, detect_en_lang
+from ..utils.data_preprocessing import clean_text_columns, detect_en_lang
 
 nlp = spacy.load("en_core_web_lg")
 

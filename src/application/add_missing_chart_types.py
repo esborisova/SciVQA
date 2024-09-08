@@ -34,7 +34,7 @@ def main():
 
     now = datetime.datetime.now()
     date_str = now.strftime("%Y-%m-%d")
-    scivqa_data.to_pickle(f"../../data/scivqa_data_updated_{date_str}.pkl")
+    scivqa_data.to_pickle(f"../../data/scivqa_data_3000_updated_{date_str}.pkl")
 
 
 if __name__ == "__main__":
