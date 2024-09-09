@@ -1,4 +1,4 @@
-# <img src="./logos/SciVQA_logo.gif" alt="drawing" width="300"/>
+# <img src="SciVQA_logo.gif" alt="drawing" width="300"/>
 
 
 # Data
