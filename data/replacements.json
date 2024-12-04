@@ -1,0 +1,608 @@
+{
+  "summary": {
+    "total_replacements": 40,
+    "total_removed": 40
+  },
+  "replacements": [
+    {
+      "removed": {
+        "image_file": "2020.acl-main.415.pdf-Figure1.png",
+        "chart_id": "2020.acl-main.415.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1301.2405v1-Figure8-1.png",
+        "chart_id": "1301.2405v1-Figure8-1",
+        "caption": "Fig. 8. Quantile regressions (QR) for (lower) quantiles q = 0.1 and q = 0.05, using bandwidths h = 30 (solid lines) and h= 10 (dashed lines). The points are distances from the document being dated to documents in the test set, plotted against the true dates of the test documents. The vertical line is at the true date, 1261.",
+        "title": "Dating medieval English charters",
+        "first_mention": "6. Calendaring via quantile regression (QR). A third proposal for the calendaring problem is based on quantile regression as follows. Suppose that D is a document whose date we wish to estimate. A scatterplot is produced of the distances Dist(D,Di) from D to each of the documents Di \u2208 T in a training set, against the known dates t(Di) of those training set documents. A nonparametric quantile regression (QR) curve is then fit to this scatterplot, and the date at which this QR plot attains its minimum value is taken as the estimate of the date of D. QR algorithms typically have two parameters: a bandwidth h which controls the smoothness of the curve and a quantile 0< q < 1. (The bandwidth parameter need not be kept constant over the range of dates and may be larger in regions of sparser date ranges.) The parameters h and q are meant to be optimized for documents in a validation set which are dated using data in a training set. The procedure is then assessed on the documents in a held-out test set. Figure 8 in Section 8 below illustrates the QR procedure in action. For quantile regression, our key reference is Koenker (2005)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2110.pdf-Figure7.png",
+        "chart_id": "W10-2110.pdf-Figure7",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2008.03415v1-Figure4-1.png",
+        "chart_id": "2008.03415v1-Figure4-1",
+        "caption": "Figure 4: (Best viewed in color) Empirical Cumulative Density Function (ECDF) of names accuracy in Winogender data across demographic categories. The grey vertical line is the confidence percentile for OOV Name. Models with more left skewed accuracy are better (or harder to distinguish plots mean better models).",
+        "title": "Assessing Demographic Bias in Named Entity Recognition",
+        "first_mention": "3.2 Distribution of Accuracy across Names Next we look at the distribution of accuracy across names in each demographic category. In Figure 1, we report the distribution of name accuracy in Winogender data across all the names in a demographic category for all models. We observe that a large percentage of names from non-White categories have accuracy lower than the OOV names with uninformative embeddings. A similar analysis was conducted for all demographic categories (see figure 4) as well as only for gender categories (see figure 5), but the bias for gender is not as dominant as the other demographic categories. This indicates that the models introduce some biases based on the name\u2019s"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2110.pdf-Figure8.png",
+        "chart_id": "W10-2110.pdf-Figure8",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1811.06477v1-Figure3-1.png",
+        "chart_id": "1811.06477v1-Figure3-1",
+        "caption": "Figure 3: Epoch v/s Validation Perplexity plot for LSTM-LM and MLSTM-LM",
+        "title": "Multi-cell LSTM Based Neural Language Model",
+        "first_mention": "Figure 3 gives the Epoch v/s Validation set perplexity plot for the top MLSTM-LM and replicated result of Large regularized LSTM model by Zaremba et al. [Zaremba et al., 2014]. Figure 4 is the Epoch v/s Validation set perplexity plot for small, medium and large MLSTM-LM models. While Zaremba et al. [Zaremba et al., 2014] reports the saturation of large model at Epoch 55 and the medium model at Epoch 39, all of our models attain saturation well before that. All of our models were able to outperform the models from [Zaremba et al., 2014] with a training time of approximately 30 epochs. Interestingly the replication of Zaremba\u2019s experiment on the large regularized LSTM model using our learning rate annealing algorithm also saturates early. This also shows the effectiveness of our annealing algorithm."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2206.pdf-Figure5.png",
+        "chart_id": "W10-2206.pdf-Figure5",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1906.11604v1-Figure3-1.png",
+        "chart_id": "1906.11604v1-Figure3-1",
+        "caption": "Figure 3: The relative improvement in Development accuracy over sets over baseline obtained by using conversational-context embeddings with different number of utterance history and different merging techniques.",
+        "title": "Gated Embeddings in End-to-End Speech Recognition for\n  Conversational-Context Fusion",
+        "first_mention": "We also investigate the effect of the number of utterance history being encoded. We tried different N = [1, 5, 9] number of utterance histories to learn the conversational-context embeddings. Figure 3 shows the relative improvements in the accuracy on the Dev set (5.2) over the baseline \u201cnon-conversational\u201d model. We show the improvements on the two different methods of merging the contextual embeddings, namely mean and concatenation. Typically increasing the receptive field of the conversational-context helps improve the model. However, as the number of utterence history increased, the number of trainable parameters of the concatenate model increased making it harder for the model to train. This led to a reduction in the accuracy."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2206.pdf-Figure6.png",
+        "chart_id": "W10-2206.pdf-Figure6",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1712.06086v1-Figure3.5-1.png",
+        "chart_id": "1712.06086v1-Figure3.5-1",
+        "caption": "Figure 3.5: Log-energy decay of h[n]",
+        "title": "Deep Learning for Distant Speech Recognition",
+        "first_mention": "The amount of reverberation characterizing an acoustic enclosure can be estimated with some popular metrics. One of the most representative measures is the reverberation time T60, that is defined as the time required for a sound to decay 60 dB from its initial energy level. Although T60 varies significantly depending on the room acoustics, in standard enclosures it typically ranges between 250 ms and 850 ms. Figure 3.5 shows the logenergy decay obtained with the impulse response of Figure 3.4. In this"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2206.pdf-Figure7.png",
+        "chart_id": "W10-2206.pdf-Figure7",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2003.13003v2-Figure4-1.png",
+        "chart_id": "2003.13003v2-Figure4-1",
+        "caption": "Figure 4: Tuning the hyper-parameter \u03bb.",
+        "title": "Meta Fine-Tuning Neural Language Models for Multi-Domain Text Mining",
+        "first_mention": "In this section, we present more experiments on detailed analysis of MFT. We first study how many training steps of MFT we should do before finetuning. As datasets of different tasks vary in size, we tune the epochs of MFT instead. In this set of experiments, we fix parameters as default, vary the training epochs of MFT and then run fine-tuning for 2 epochs for all domains. The results of two NLP tasks are shown in Figure 3. It can be seen that too many epochs of MFT can hurt the performance because BERT may learn too much from other domains before fine-tuning on the target domain. We suggest that a small number of MFT epochs are sufficient for most cases. Next, we tune the hyperparameter \u03bb from 0 to 0.5, with the results shown in Figure 4. The inverted-V trends clearly reflect the balance between the two types of losses in MFT, with very few exceptions due to the fluctuation of the stochastic learning process."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2206.pdf-Figure8.png",
+        "chart_id": "W10-2206.pdf-Figure8",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1610.06602v3-Figure1-1.png",
+        "chart_id": "1610.06602v3-Figure1-1",
+        "caption": "Figure 1: BLEU as a function of the total number of substitutions allowed per sentence. Values are reported on a small 3K validation set for the single and dual attention models using the best scoring heuristic s and threshold t (cf. Table 2).",
+        "title": "Iterative Refinement for Machine Translation",
+        "first_mention": "Figure 1 plots accuracy versus the number of allowed substitutions and Figure 2 shows the percentage of actually modified tokens. The dual attention model (\u00a74) outperforms single attention (\u00a73). Both models achieve most of improvement by making only 1-2 substitutions per sentence. Thereafter only very few substitutions are made with little impact on BLEU. Figure 2 shows that the models saturate quickly, indicating convergence of the refinement output to a state where the models have no more suggestions."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2206.pdf-Figure9.png",
+        "chart_id": "W10-2206.pdf-Figure9",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1308.6628v2-Figure22-1.png",
+        "chart_id": "1308.6628v2-Figure22-1",
+        "caption": "Fig. 22. The average recall of the video, text and joint parse graphs evaluated against the ground truth parse graphs re-constructed based on different degrees of consensus.",
+        "title": "Joint Video and Text Parsing for Understanding Events and Answering\n  Queries",
+        "first_mention": "To compensate for this phenomenon in computing recall, we changed the ground truth parse graphs by keeping only the entities and relations that are mentioned by a minimal number of human subjects. The number of human subjects that mention an entity or relation indicates the degree of consensus among the human subjects regarding the existence and importance of the entity or relation. The maximal degree of consensus is 4/4 in our experiments because we used the text from four of the five human subjects to construct the ground truth parse graphs (excluding the provider of the input text of joint parsing). Figure 22 shows the average recall scores of all types of parse graphs evaluated against the re-constructed ground truth parse graphs based on different degrees of consensus. It can be seen that all the recall scores are improved with the increase of the ground truth degree of consensus. Most of the improvements are very large, implying that the text descriptions from different human subjects are indeed quite different, leading to significant changes of the ground truth parse graphs at different degrees of consensus. At the highest degree of consensus, the recall scores of most of the parse graphs are over 0.9, suggesting that these parse graphs"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2305.pdf-Figure1.png",
+        "chart_id": "W10-2305.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1909.00512v1-Figure1-1.png",
+        "chart_id": "1909.00512v1-Figure1-1",
+        "caption": "Figure 1: In almost all layers of BERT, ELMo, and GPT-2, the word representations are anisotropic (i.e., not directionally uniform): the average cosine similarity between uniformly randomly sampled words is non-zero. The one exception is ELMo\u2019s input layer; this is not surprising given that it generates character-level embeddings without using context. Representations in higher layers are generally more anisotropic than those in lower ones.",
+        "title": "How Contextual are Contextualized Word Representations? Comparing the\n  Geometry of BERT, ELMo, and GPT-2 Embeddings",
+        "first_mention": "Contextualized representations are anisotropic in all non-input layers. If word representations from a particular layer were isotropic (i.e., directionally uniform), then the average cosine similarity between uniformly randomly sampled words would be 0 (Arora et al., 2017). The closer this average is to 1, the more anisotropic the representations. The geometric interpretation of anisotropy is that the word representations all occupy a narrow cone in the vector space rather than being uniform in all directions; the greater the anisotropy, the narrower this cone (Mimno and Thompson, 2017). As seen in Figure 1, this implies that in almost all layers of BERT, ELMo and GPT-2, the representations of all words occupy a narrow cone in the vector space. The only exception is ELMo\u2019s input layer, which produces static character-level embeddings without using contextual or even positional information (Peters et al., 2018). It should be noted that not all static embeddings are necessarily isotropic, however; Mimno and Thompson (2017) found that skipgram embeddings, which are also static, are not isotropic."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2305.pdf-Figure3.png",
+        "chart_id": "W10-2305.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1905.02450v5-Figure5-1.png",
+        "chart_id": "1905.02450v5-Figure5-1",
+        "caption": "Figure 5. The performances of MASS with different masked lengths k, in both pre-training and fine-tuning stages, which include: the PPL of the pre-trained model on English (Figure a) and French (Figure b) sentences from WMT newstest2013 on English-French translation; the BLEU score of unsupervised English-French translation on WMT newstest2013 (Figure c); the ROUGE score (F1 score in RG-2) on the validation set of text summarization (Figure d); the PPL on the validation set of conversational response generation (Figure e).",
+        "title": "MASS: Masked Sequence to Sequence Pre-training for Language Generation",
+        "first_mention": "We observe both the performance of MASS after pretraining, as well as the performance after fine-tuning on several language generation tasks, including unsupervised English-French translation, text summarization and conversational response generation. We first show the perplexity (PPL) of the pre-training model on the English and French languages with different k. We choose the English and French sentences from newstest2013 of WMT En-Fr as the validation set, and plot the PPL in Figure 5a (English) and 5b (French). It can be seen that the pre-trained model achieves the best validation PPL when k is between 50% and 70% of the sentence length m. We then observe the performance on fine-tuning tasks. We show the curve of the validation BLEU scores on unsupervised En-Fr trans-"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-2305.pdf-Figure4.png",
+        "chart_id": "W10-2305.pdf-Figure4",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2008.01297v2-Figure6-1.png",
+        "chart_id": "2008.01297v2-Figure6-1",
+        "caption": "Fig. 6: Almost sure convergence to occurrence probabilities",
+        "title": "An improved Bayesian TRIE based model for SMS text normalization",
+        "first_mention": "In light of Theorem 3.2, a simulation was performed where we trained the new Trie using the training and probability generation algorithms defined in Section 3 with the eight words used in Section 2. The Trie probabilities denoted by the bold lines evidently converge to the occurrence probabilities denoted by the dotted lines in Fig.6."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W10-4316.pdf-Figure6.png",
+        "chart_id": "W10-4316.pdf-Figure6",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1808.06244v2-Figure7-1.png",
+        "chart_id": "1808.06244v2-Figure7-1",
+        "caption": "Figure 7: The learning curve for Transfer Learning (XL-NBT-C).",
+        "title": "XL-NBT: A Cross-lingual Neural Belief Tracking Framework",
+        "first_mention": "A.3 Learning Curve Here we demonstrate the learning curve for XLNBT-D in Figure 6 and XL-NBT-C in Figure 7."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W11-4646.pdf-Figure1.png",
+        "chart_id": "W11-4646.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1903.10421v2-Figure2-1.png",
+        "chart_id": "1903.10421v2-Figure2-1",
+        "caption": "Figure 2: Comparison between the bound Bk(n), valid for all primitive NZ sets, and rtk(M) for (a) M =MCPR and (b)M =MK .",
+        "title": "A linear bound on the k-rendezvous time for primitive sets of NZ\n  matrices",
+        "first_mention": "We now present some numerical results that compare the theoretical bound Bk(n) on rtk(n) of Eq.(6) with either the exact k-RT or with an heuristic approximation of it when the computation of the exact value is not computationally feasible of some primitive sets. In Figure 2 we compare our bound with the real k-RT of the primitive setsMCPR andMK reported here below:"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W11-4646.pdf-Figure2.png",
+        "chart_id": "W11-4646.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1706.07238v1-Figure4-1.png",
+        "chart_id": "1706.07238v1-Figure4-1",
+        "caption": "Figure 4: Performance as function of hypothesis diversity in CHiME-3.",
+        "title": "Automatic Quality Estimation for ASR System Combination",
+        "first_mention": "Figure 4 shows the performance analysis with regard to the diversity groups in the CHiME-3 task. Comparing the curves in Figures 3 and 4, we observe that the distribution of the CHiME-3 transcriptions with respect to the different levels of diversity (black-dotted lines) is more uniform than in IWSLT. This is mostly due to the presence of the enhanced channels that perform significantly better than the raw ones, hence they enlarge the gap between the best and the worst transcriptions. In terms of performance, this uniform distribution allows the QE-informed ROVER to outperform SysO also for small values of diversity (\u223c30% ) in CHiME-3. Increasing the level of diversity, our method significantly gains in performance over SysO and also approaches SegO at the diversity value of 90%."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0210.pdf-Figure3.png",
+        "chart_id": "W12-0210.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1709.04380v2-Figure5-1.png",
+        "chart_id": "1709.04380v2-Figure5-1",
+        "caption": "Figure 5: Average word error rate for learning the Dyck language with different sample sizes.",
+        "title": "Neural Network Based Nonlinear Weighted Finite Automata",
+        "first_mention": "We then compared the sample complexity of learning NL-WFA and WFA by training the different models on training set of sizes ranging from 200 to 20, 000. For all models the rank is chosen by cross-validation. In Figure 4 and Figure 5, we show the performances for the four models on a test set of size 250 by reporting the average and standard deviation over 10 runs of this experiment. We can see that NL-WFA achieve better results on small sample sizes for the Pautomac score and consistently outperforms the linear model for all sample sizes for WER. This shows that NL-WFA can use the training data more efficiently and again that the expressiveness of NL-WFA is beneficial to this learning task."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0210.pdf-Figure5.png",
+        "chart_id": "W12-0210.pdf-Figure5",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1905.03968v3-Figure4-1.png",
+        "chart_id": "1905.03968v3-Figure4-1",
+        "caption": "Figure 4: Accuracy vs Parameter Count plot for various values of \u03b1",
+        "title": "MobiVSR: A Visual Speech Recognition Solution for Mobile Devices",
+        "first_mention": "From the Table 2, it can be inferred that MobiVSR-1 achieves 72.2% accuracy on LRW dataset and reaches to an uncompressed size of 17.8 MB. As expected, the accuracy increases by increasing the number of LipRes blocks (Section 3). However, several interesting trends can be inferred from the results. One such is the accuracy to size ratio comparison. MobiVSR-1 has an accuracy to size ratio of 4.06 while the SOTA\u2019s value is 0.64. Thus, MobiVSR gives much higher accuracy per megabyte space as compared to any other model. Further, in case of MobiVSR the slope of increase of accuracy vs model size is almost 3 MBs per 100 basis point increase in performance (Figure 4). The statistics of parameter count, memory access and FLOPs also follow the same trends. The values are (SOTA/MobiVSR-1) - FLOPs (0.29/6.56), memory access (1.47/2.04) and parameter count (3.31/16.04). Most of these values show improvements of the order of 10x."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0210.pdf-Figure6.png",
+        "chart_id": "W12-0210.pdf-Figure6",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1801.04017v1-Figure5-1.png",
+        "chart_id": "1801.04017v1-Figure5-1",
+        "caption": "Figure 5: Using the 9-dimensional RPAS vector we use the Imposter Method and compare Christopher Marlowe\u2019s Hero and Leander to Edward III scene chunks using min max and cosine similarity detection. Marlowe\u2019s work is dissimilar to Kyd\u2019s, and therefore, the work furthest away from Marlowe\u2019s is Kyd\u2019s. Logically, if there are only two authors in Edward III, then the work closest to Marlowe must be Shakespeare. We see the \u2018Shakespeare 5\u2019 (chunks 6, 8, 15, 16, 17) appear in the top cluster closest to Marlowe\u2019s work, but with the inclusion of cluster 11. Of note, the four Shakespearian clusters marked with a red circle are those commonly attributed to Shakespeare, and they all fall close to Kyd. Further, the ellipses are our visual clustering assignment.",
+        "title": "Did William Shakespeare and Thomas Kyd Write Edward III?",
+        "first_mention": "We compare Christopher Marlowe's Hero and Leander to Thomas Kyd\u2019s The Spanish Tragedy using both cosine and minmax. Marlowe\u2019s work is considered to an imposter because he is neither Kyd or Shakespeare. The similarity between Marlowe and Kyd\u2019s work is small(cosine 22.096%, minmax 17.48% or ~80.2% dissimilar) so Kyd's authored chunks will sit furthest from the upper-right-hand corner. The similarity plot (Figure 5) highlights a Shakespeare cluster (chunks 6, 8, 11, 15, 16, 17), and a Kyd cluster (chunks 1, 2, 4, 5, 7, 9, 12, 13, 14, 18, 19). Chunks 3 and 10 sit outside and are more like Kyd on the cosine measure, but ambiguous on the minmax measure."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0211.pdf-Figure2.png",
+        "chart_id": "W12-0211.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1705.02518v1-Figure2-1.png",
+        "chart_id": "1705.02518v1-Figure2-1",
+        "caption": "Figure 2: Increase in log-likelihood (scaled by 10e+ 07) of the data per-iteration in the five domains.",
+        "title": "Exploring Latent Semantic Factors to Find Useful Product Reviews",
+        "first_mention": "predicting ratings, only indirectly via optimizing the Dirichlet hyper-parameters \u03b1 of the Multinomial facet distribution \u0398 \u2014 and cannot guarantee an increase in data log-likelihood over iterations. In contrast, we exploit (i) to learn the expertise-facet distribution \u0398 directly from the review helpfulness scores by minimizing the mean squared error during inference. This is also tricky as parameters of the distribution \u0398, for an unconstrained optimization, are not guaranteed to lie on the simplex \u2014 for which we do certain transformations, discussed during inference. Therefore, parameters are strongly coupled in our model, not only reducing mean squared error, but also leading to a near smooth increase in data log-likelihood over iterations (refer Figure 2)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0211.pdf-Figure3.png",
+        "chart_id": "W12-0211.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1610.04265v2-Figure9-1.png",
+        "chart_id": "1610.04265v2-Figure9-1",
+        "caption": "Figure 9: Decoding speed with a large language model",
+        "title": "Fast, Scalable Phrase-Based SMT Decoding",
+        "first_mention": "It has been suggested that using a larger language model would overpower the improvements in decoding speed. We tested this conjecture by replacing the language model in the ar-en experiment with a 96GB language model. The time to load of language model is significant (394 sec) and was excluded from the translation speed. Results show that our decoder is 7 times faster than Moses and still scales monotonically until all CPUs are saturated, Figure 9."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0211.pdf-Figure4.png",
+        "chart_id": "W12-0211.pdf-Figure4",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1812.00815v1-Figure4-1.png",
+        "chart_id": "1812.00815v1-Figure4-1",
+        "caption": "FIG. 4. Validation error curves for models that are too wide. The architecture is specified as n \u00d7 m, where m is the number of hidden layers and n the number of neurons per layer. [Color figure can be viewed at wileyonlinelibrary.com]",
+        "title": "Comparing Neural- and N-Gram-Based Language Models for Word Segmentation",
+        "first_mention": "However, it seems that our networks cannot grow indefinitely in width (number of neurons per layer) with respect to depth (number of layers), as this may cause serious unstability issues during the training process (see Figure 4)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0211.pdf-Figure5.png",
+        "chart_id": "W12-0211.pdf-Figure5",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2008.09049v1-Figure3-1.png",
+        "chart_id": "2008.09049v1-Figure3-1",
+        "caption": "Figure 3: Cumulative explained variance plot under PCA with on LRC with number of components equal to d\u2032 = 768.",
+        "title": "Discovering Useful Sentence Representations from Large Pretrained\n  Language Models",
+        "first_mention": "Intrinsic Dimension via PCA: We pick the best performing z under BLEU-max for each sentence from experiment IV with d\u2032 = 768 and apply PCA to retain 768 components (ncomp). We observe that both intrinsic dimension experiments via PCA and via recoverability show similar patterns. The shape of the curve in Figure 3, hints that Z does not lie on a lower-dimensional linear manifold and that its intrinsic dimensionality is approximately 768. ncomp \u2248 600 explains almost 95% of the data\u2019s variance, which supports our observations from experiment IV that shows d\u2032 = 576 achieving nearly perfect BLEU (Figure 2)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0214.pdf-Figure1.png",
+        "chart_id": "W12-0214.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1910.12618v2-Figure8-1.png",
+        "chart_id": "1910.12618v2-Figure8-1",
+        "caption": "Figure 8: Word vector log-norm over B = 10.",
+        "title": "Textual Data for Time Series Forecasting",
+        "first_mention": "few seemingly unrelated words enter the lists of top 10, especially for the English case (such as \u201dpressure\u201d or \u201ddusk\u201d for \u201dFebruary\u201d). In fact the French language embedding seems of better quality, which is perhaps linked to the longer length of the French reports in average. This issue could probably be addressed with more data. Another observation made is that the importance of a word w seems related to its euclidean norm in the embedding space \u2016\u2212\u2192w \u20162. For both languages the list of the 20 words with the largest norm is given fig. 8. As one can see, it globally matches the selected ones from the RF or the LASSO (especially for the French language), although the order is quite different. This is further supported by the Venn diagram of common words among the top 50 ones for each word selection method represented in figure 9 for France. Therefore this observation could also be used as feature selection procedure for the RNN or CNN in further work."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-0214.pdf-Figure2.png",
+        "chart_id": "W12-0214.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1404.3026v1-Figure2-1.png",
+        "chart_id": "1404.3026v1-Figure2-1",
+        "caption": "Figure 2: The ROC of classifiers that use hand chosen keywords (a) and algorithmically chosen keywords (b) to determine if an individual is ill. The top 10 (solid line), 100 (dashed line) and 1000 (dotted line) were selected as the features.",
+        "title": "On the Ground Validation of Online Diagnosis with Twitter and Medical\n  Records",
+        "first_mention": "exact test to compare keyword occurrence in months when the user is sick or not sick and find a significant effect for six of the seven keywords (See table 1). Additionally, we try algorithmically selecting keywords by first finding the 12,393 most common keywords in the data set. We then rank them based off of information gain on predicting influenza and choose the top 10, 100 or 1000 keywords from the list. In all of these cases, we pre-process the data by tokenizing the text on spaces, tabs and line breaks and the characters \u201c.,;\u2019:\u201d()?!/\\\u201d, remove stop words1, perform Porter stemming [12] and convert the text to lower case. We use Naive Bayes, random forest, J48 (a Java implementation of C4.5), logistic regression and support vector machines to classify a user as being sick in a given month or not (see figure 2)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W13-0702.pdf-Figure1.png",
+        "chart_id": "W13-0702.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1909.03004v1-Figure1-1.png",
+        "chart_id": "1909.03004v1-Figure1-1",
+        "caption": "Figure 1: Current practice when comparing NLP models is to train multiple instantiations of each, choose the best model of each type based on validation performance, and compare their performance on test data (inner box). Under this setup, (assuming test-set results are similar to validation), one would conclude from the results above (hyperparameter search for two models on the 5-way SST classification task) that the CNN outperforms Logistic Regression (LR). In our proposed evaluation framework, we instead encourage practitioners to consider the expected validation accuracy (y-axis; shading shows \u00b11 standard deviation), as a function of budget (x-axis). Each point on a curve is the expected value of the best validation accuracy obtained (y) after evaluating x random hyperparameter values. Note that (1) the better performing model depends on the computational budget; LR has higher expected performance for budgets up to 10 hyperparameter assignments, while the CNN is better for larger budgets. (2) Given a model and desired accuracy (e.g., 0.395 for CNN), we can estimate the expected budget required to reach it (16; dotted lines).",
+        "title": "Show Your Work: Improved Reporting of Experimental Results",
+        "first_mention": "Reproducibility Reproducibility in machine learning is often defined as the ability to produce the exact same results as reported by the developers of the model. In this work, we follow Gundersen and Kjensmo (2018) and use an extended notion of this concept: when comparing two methods, two research groups with different implementations should follow an experimental procedure which leads to the same conclusion about which performs better. As illustrated in Fig. 1, this conclusion often depends on the amount of computation applied. Thus, to make a reproducible claim about which model performs best, we must also take into account the budget used (e.g., the number of hyperparameter trials)."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W13-4503.pdf-Figure3.png",
+        "chart_id": "W13-4503.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1904.04019v4-Figure4-1.png",
+        "chart_id": "1904.04019v4-Figure4-1",
+        "caption": "Fig. 4. Accuracy and F-score values of all the considered classifiers for different LSA size in the case of Irony-context Corpus",
+        "title": "Effectiveness of Data-Driven Induction of Semantic Spaces and\n  Traditional Classifiers for Sarcasm Detection",
+        "first_mention": "For the irony-context corpus, we used the same 1949 documents selected for the experiments reported in Wallace et al. (2014). To allow fair comparisons, we used only the texts of the comments, without any contextual information. The authors report a mean F-score over the five-fold of 0.383 by using a bag-ofwords representation with 50, 000 tokens, plus some other binary features that have proven useful in other works, and an SVM classifier with a linear kernel. Our results are plotted in Figure 4 and reported in column irony-context of Table 2, where it is shown how our classifiers clearly outperform the baseline. Our maximum"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W13-4506.pdf-Figure3.png",
+        "chart_id": "W13-4506.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1907.06017v1-Figure3-1.png",
+        "chart_id": "1907.06017v1-Figure3-1",
+        "caption": "Figure 3: The loss curves of Seq2Seq model (left) and Seq2Seq model with LST (right). For Seq2Seq model, the training loss is lower than validation loss. However, with LST, the training loss is higher than the validation loss. Moreover, the validation loss in the right figure is a little smaller than the left one.",
+        "title": "Learn Spelling from Teachers: Transferring Knowledge from Language\n  Models to Sequence-to-Sequence Speech Recognition",
+        "first_mention": "To further show the effect of our proposed approach, we draw the loss curves with baseline \u201cSeq2Seq\u201d and the proposed \u201cSeq2Seq+LST\u201d in Fig. 3. For \u201cSeq2Seq\u201d model, the training loss is lower than validation loss. However, for \u201cSeq2Seq+LST\u201d, the training loss is higher than validation loss. The final validation loss of \u201cSeq2Seq+LST\u201d is a little bit smaller than \u201cSeq2Seq\u201d. This result shows regularization effect of LST."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W13-4506.pdf-Figure4.png",
+        "chart_id": "W13-4506.pdf-Figure4",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1611.06322v1-Figure2-1.png",
+        "chart_id": "1611.06322v1-Figure2-1",
+        "caption": "Figure 2: Throughput of our approach per second in comparison to the average Twitter (Firehose) and Sina Weibo stream",
+        "title": "Spotting Rumors via Novelty Detection",
+        "first_mention": "ment a rumour detection system and measure its throughput when applied to 100k weibos. We implement our system in C and run it using a single core on a 2.2GHz Intel Core i7-4702HQ. We measure the throughput on an idle machine and average the observed performance over 5 runs. Figure 2 presents performance when processing more and more weibos. The average throughput of our system is around 7,000 weibos per second, which clearly exceeds the average volume of the full Twitter5 (5,700 tweets/sec.) and Sina Weibo6 (1,200 weibos/sec.) stream. Since the number of news articles is relatively small, we find no difference in terms of efficiency between computing novelty features based on kterm hashing and vector similarity. Figure 2 also illustrates that our proposed features can be computed in constant time with respect to the number of messages processed. This is crucial to keep operation in a true streaming environment feasible. Approaches, whose runtime depend on the number of documents pro-"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-0203.pdf-Figure1.png",
+        "chart_id": "W14-0203.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1212.5238v1-Figure4-1.png",
+        "chart_id": "1212.5238v1-Figure4-1",
+        "caption": "Figure 4. User Activity. Probability density p(N) of user activity (number of daily tweets N) grouped by country (A) and language (B), and by country while considering English tweets exclusively (C). Different curves collapse naturally, without any functional rescaling, indicating the presence of a seemingly universal distribution of users activity, independent from cultural backgrounds.",
+        "title": "The Twitter of Babel: Mapping World Languages through Microblogging\n  Platforms",
+        "first_mention": "Geographical analyses at any scale require the aggregation of the signal produced by different users, and it is crucial to have a clear understanding of the patterns of single user activity. One might suspect that usage patterns at the individual level may show large heterogeneities across country and thus cultures. In order to test statistically the presence of different usage patterns we gather the number of tweets per unit time sent by each single identified user. From this data we construct the probability density function p (N) that any given user emits N tweets per considered unit time. In our analysis we considered as reference unit time one day. Furthermore, the p (N) distribution can be analyzed by restricting the statistical analysis to users belonging to a specific country, a specific language or both. Interestingly, Fig. 4 shows that the distributions exhibit a universal shape irrespective both of country (panel A), language (panel B), or the weight of each countries on specific languages (panel C). As we will see this finding is pivotal for an unbiased comparison of different geographical and linguistic scenarios. Any dependence of the activity distribution upon the language or location of the users would have reduced the array of possible analysis. It is worth stressing also that the curves overlap each other naturally, i.e., with no need for any rescaling or transformation. Although this feature indicates a very strong statistical homogeneity at the population level, the observed distribution turns out to span almost 4 orders of magnitude. The broad nature of this universal distribution is clear evidence of strong individual level heterogeneity. For this reason, in order to avoid distortions due to extremely active users, we consider only the proportion of tweets emitted by each user in a given language. Thus, a user i that tweets in a set, L, of different languages, L = {A,B,C, . . . , Z}, will contribute to each language X for a fraction N iX/ \u2211 Y N i Y . We define N i X the total number of tweets written by the user in language X. We adopt the same normalization also for the position of the user. The reasons for this normalization are multiple. First, the amount of tweets collected for each user ranges over several orders of magnitude. Very active users, as well as automatic bots, might therefore distort or mask the signal coming from \u201ccommon\u201d individuals. Second, tourism might be a strong source of noise when trying to understand the demographics of a country or of a city. Touristic locations in the South of France or Italy might for example exhibit a high proportion of tweets in English or German."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-0205.pdf-Figure2.png",
+        "chart_id": "W14-0205.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1805.03793v1-Figure3-1.png",
+        "chart_id": "1805.03793v1-Figure3-1",
+        "caption": "Figure 3: Varying k on DBLP. The scores of w2v keeps increasing to 26.63 at k = 1000, and then begins to drop. Although at the cost of a larger model and longer training/inference time, it still cannot outperform h-d2v of 30.37 at k = 400.",
+        "title": "hyperdoc2vec: Distributed Representations of Hypertext Documents",
+        "first_mention": "too few citation contexts to train a good model. Moreover, DBLP requires a larger dimension size k to store more information in the embedding vectors. We increase k and report the Rec@10 scores in Figure 3. We see that all approaches have better performance when k increases to 200, though d2v-based ones start to drop beyond this point."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-0210.pdf-Figure1.png",
+        "chart_id": "W14-0210.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2005.00048v1-Figure4-1.png",
+        "chart_id": "2005.00048v1-Figure4-1",
+        "caption": "Figure 4: Training & validation performance",
+        "title": "Context based Text-generation using LSTM networks",
+        "first_mention": "Figure 4a shows a plot of accuracy over epochs(time) on training and validation dataset. It compares both the word vector spaces(wiki and domain). One could observe that the validation accuracy never really took off. The training dataset keeps on getting better and better and even reached around 97%. It is very clear that the model is overfitting. But the problem with text generation models is that unlike other models, there is no sweet spot where the training accuracy"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-3601.pdf-Figure1.png",
+        "chart_id": "W14-3601.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1904.12848v6-Figure4-1.png",
+        "chart_id": "1904.12848v6-Figure4-1",
+        "caption": "Figure 4: Comparison with two semi-supervised learning methods on CIFAR-10 and SVHN with varied number of labeled examples.",
+        "title": "Unsupervised Data Augmentation for Consistency Training",
+        "first_mention": "\u2022 Second, we show that UDA can match and even outperform purely supervised learning that uses orders of magnitude more labeled data. See results in Table 4 and Figure 4. State-of-the-art results for both vision and language tasks are reported in Table 3 and 4. The effectiveness of UDA across different training data sizes are highlighted in Figure 4 and 7."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-4908.pdf-Figure1.png",
+        "chart_id": "W14-4908.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1704.06104v2-Figure4-1.png",
+        "chart_id": "1704.06104v2-Figure4-1",
+        "caption": "Figure 4: Probability of correct relation identification given true distance is |d|.",
+        "title": "Neural End-to-End Learning for Computational Argumentation Mining",
+        "first_mention": "generality, LSTM-ER considers all these relations as plausible, while STagT does not (for any of choice of T ): e.g., our coding explicitly constrains each premise to link to exactly one other component, rather than to 0, . . . ,m possible components, as LSTM-ER allows. In addition, our explicit coding of distance values d biases the learner T to reflect the distribution of distance values found in real essays\u2014namely, that related components are typically close in terms of the number of components between them. In contrast, LSTM-ER only mildly prefers short-range dependencies over long-range dependencies, cf. Figure 4."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-4908.pdf-Figure2.png",
+        "chart_id": "W14-4908.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2004.06747v1-Figure1-1.png",
+        "chart_id": "2004.06747v1-Figure1-1",
+        "caption": "Fig. 1. Informativeness nCG scores about F1-scores vs. word2vec approaches",
+        "title": "Extending Text Informativeness Measures to Passage Interestingness\n  Evaluation (Language Model vs. Word Embedding)",
+        "first_mention": "Figure 1 presents the results of the F1-scores over uni-grams, bigrams and skip-grams and compares them against the word2vec uni-gram models. It shows that word2vec approaches are less efficient to evaluate short passage informativeness even over standard uni-grams. Meanwhile, F1-scores over bi-grams and skip-grams reach similar performance."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W14-4908.pdf-Figure3.png",
+        "chart_id": "W14-4908.pdf-Figure3",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1906.09426v1-Figure1-1.png",
+        "chart_id": "1906.09426v1-Figure1-1",
+        "caption": "Figure 1: Character/word error rates for code-switched Hindi-English specific to different \u03bb values.",
+        "title": "End-to-End ASR for Code-switched Hindi-English Speech",
+        "first_mention": "We experiment with the following range 0.0 \u2264 \u03bb \u2264 1.0 and observe that all the systems perform well only when the value of \u03bb is close to either 0.0 or 1.0. The word/character error rates suddenly peak when the value is close to 0.5 as shown in Figure 1. Robust results were obtained within the range 0.7 \u2264 \u03bb \u2264 0.9 for all the languages. This might be due to the fact that the attention model is too flexible to allow non-sequential alignments for the output of the decoder, which is non-permissible for speech recognition as described by [27]. CTC acts as a regularizer due to its Markov chain assumption and prunes the alignments which are non-sequential. Hence, giving higher weight to CTC (higher \u03bb) might produce robust results as compared to attention."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W15-1810.pdf-Figure2.png",
+        "chart_id": "W15-1810.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1903.11393v1-Figure2-1.png",
+        "chart_id": "1903.11393v1-Figure2-1",
+        "caption": "Figure 2: Model performance on the semantic (SICK-R, STS-B, and STS12-16) and training task (image-caption retrieval) measures including the 95 percent confidence interval. Training task performance is measured in recall@10. The semantic performance measure is Pearson\u2019s r. The horizontal axis shows the embedding size with max indicating the max pooling model.",
+        "title": "Learning semantic sentence representations from visually grounded\n  language without lexical knowledge",
+        "first_mention": "Figure 2 shows the results for our models trained on Flickr8k. There is no clear winner in terms of performance: The GRU 2048 (referring to the embedding size) performs best on STS, GRU 4096 on SICK-R and STS-B, and LSTM 4096 on the training task. Although there are differences between the GRU and the LSTM, they are only statistically significant for STS12-16. Furthermore, the max pooling models are outperformed by their attention based counterparts. We only tested the max pooling with an embedding size of 2048."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W15-1810.pdf-Figure4.png",
+        "chart_id": "W15-1810.pdf-Figure4",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2002.09253v4-Figure12-1.png",
+        "chart_id": "2002.09253v4-Figure12-1",
+        "caption": "Figure 12: Exploration metrics for different goal imagination mechanisms: (a) Interesting interaction count (IC) on training set, IC on testing set, (c) IC on extra set. Goal imagination starts early (vertical line), except for the no imagination baseline (green). Standard errors of the mean plotted for clarity (as usual, 10 seeds).",
+        "title": "Language as a Cognitive Tool to Imagine Goals in Curiosity-Driven\n  Exploration",
+        "first_mention": "Details on the impacts of various goal imagination mechanisms on exploration. Figure 12 presents the IC exploration scores on the training, testing and extra sets for the different goal imagination mechanisms introduced in Main Section 4.2. Let us discuss each of these scores:"
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W15-2904.pdf-Figure2.png",
+        "chart_id": "W15-2904.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "2007.13968v1-Figure4-1.png",
+        "chart_id": "2007.13968v1-Figure4-1",
+        "caption": "Figure 4: Fine tune of epochs and batch size.",
+        "title": "YNU-HPCC at SemEval-2020 Task 8: Using a Parallel-Channel Model for\n  Memotion Analysis",
+        "first_mention": "This experiment used Keras with the TensorFlow backend. For subtask A, we used two different pretrained word vectors, and we introduced other models. For subtask A, we tried different batch sizes and attempts, and the results are shown in Figure 4.The best batch size is 60, the best number of training epochs is 14 and the learning rate is set as 1e-5. We use Scikit-Learn to execute the grid search (Pedregosa et al., 2011) to adjust the hyperparameters, through which we can find the best parameters for evaluating the system. The parameters given are as follows: the time step of the RNN for hidden layers 1, 2 (h1,2) and 3 (h3); the dimension of the dense layer (d); and the dropout rate (r). For the image channel, we also have the number of convolution layers (c), the number of filters (m), the length of the filter (l) and the pool (p). Table 1 summarizes these fine-tuned parameters."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W16-0805.pdf-Figure1.png",
+        "chart_id": "W16-0805.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1712.08349v2-Figure5-1.png",
+        "chart_id": "1712.08349v2-Figure5-1",
+        "caption": "Figure 5: The influence window (\u03c4v,u ) between two arbitrary users characterises the average time for an entity to propagate fromv tou. In hours, this value has a right-skew (Fig. 5a), while the log-log plot (Fig. 5b) of the relative frequency distribution demonstrates the heavy-tail nature of the distribution with a mean of 10, 780 hours (\u2248 449 days \u2248 1.2 years).",
+        "title": "Tracking the Diffusion of Named Entities",
+        "first_mention": "Fig. 5a shows the binned distribution of the \u03c4v,u values. Note the distribution has a right skewwith themode of the distribution being around one hour; this then gradually tails off with fewer people having larger influence windows. The log-log plot of the relative frequency distribution (Fig. 5b) shows the heavy-tail property of the distribution, and that the mean window width is 10780 hours (\u2248 449 days \u2248 1.2 years), indicating a degree of stickiness in Reddit communities, where people remain for long periods."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W16-1721.pdf-Figure1.png",
+        "chart_id": "W16-1721.pdf-Figure1",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1805.00352v1-Figure1-1.png",
+        "chart_id": "1805.00352v1-Figure1-1",
+        "caption": "Figure 1: Percentage of negative vs. positive SentiWordNet scores",
+        "title": "Word2Vec and Doc2Vec in Unsupervised Sentiment Analysis of Clinical\n  Discharge Summaries",
+        "first_mention": "Figure 1 shows the percentage of positive and negative scores of each subset plotted against each other. We can see from this graph that there are certain datasets that have a higher than average negative score combined with a lower than average positive score (such as the dataset obesity and hypertension). This could be indicative of a negative bias in relation to the other subsets. In contrast, the opposite behavior can also be observed \u2013 the dataset hypertension not obesity contains a lower than average negative sentiment score combined with a higher than average positive sentiment score. This could be indicative of a positive bias in relation to the other data sets. As we can observe from Figure 1, the most negative overall sentiment occurs when the difference between the negative score and the positive score is high. Similarly, the most positive overall sentiment occurs when that difference is small. Thus, we can deduce that the overall relative sentiment of each subset can be obtained through taking the difference between the negative sentiment and the positive sentiment. The overall sentiment of each subset is obtained by taking the difference of the negative sentiment score and the positive sentiment score for each subset; we plot them on Figure 2. The overall sentiment scores can also be found in Table 4. We can see from these results that the obesity and hypertension dataset has the most negative overall sentiment, with the subset obesity being the second most negative, and the subset hypertension not diabetes being the third most negative. In contrast, the hypertension not obesity subset has the most positive overall sentiment."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W16-1721.pdf-Figure2.png",
+        "chart_id": "W16-1721.pdf-Figure2",
+        "venue": "acl",
+        "chart_type": "map"
+      },
+      "replaced_with": {
+        "image_file": "1910.14395v1-Figure4-1.png",
+        "chart_id": "1910.14395v1-Figure4-1",
+        "caption": "Figure 4: Google n-gram trend for \u2018media architecture\u2019",
+        "title": "Great New Design: How Do We Talk about Media Architecture in Social\n  Media",
+        "first_mention": "In order to get a better sense of the relevance of these results compared to more general literature, and to check how our questions resonate with it, we compared the frequency of certain identified keywords in books scanned by Google Books project, using Google n-gram search10. Figure 4 shows the trend for the phrase \u2018media architecture\u2019 which, as can be expected, raises sharply since the middle of 1990s. The sharp decline we can observe since mid 2000s can perhaps be explained by the availability of data (most recent books may be less represented in the corpus), but it is certainly something to return to in the future."
+      }
+    }
+  ]
+}
