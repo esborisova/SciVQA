@@ -1,7 +1,7 @@
 {
   "summary": {
-    "total_replacements": 40,
-    "total_removed": 40
+    "total_replacements": 41,
+    "total_removed": 41
   },
   "replacements": [
     {
@@ -602,6 +602,21 @@
         "caption": "Figure 4: Google n-gram trend for \u2018media architecture\u2019",
         "title": "Great New Design: How Do We Talk about Media Architecture in Social\n  Media",
         "first_mention": "In order to get a better sense of the relevance of these results compared to more general literature, and to check how our questions resonate with it, we compared the frequency of certain identified keywords in books scanned by Google Books project, using Google n-gram search10. Figure 4 shows the trend for the phrase \u2018media architecture\u2019 which, as can be expected, raises sharply since the middle of 1990s. The sharp decline we can observe since mid 2000s can perhaps be explained by the availability of data (most recent books may be less represented in the corpus), but it is certainly something to return to in the future."
+      }
+    },
+    {
+      "removed": {
+        "image_file": "W12-4625.pdf-Figure11.png",
+        "chart_id": "W12-4625.pdf-Figure11",
+        "venue": "acl",
+        "chart_type": "tree"
+      },
+      "replaced_with": {
+        "image_file": "1708.05565v2-Figure4-1.png",
+        "chart_id": "1708.05565v2-Figure4-1",
+        "caption": "Figures 4: Experiment results with the ECPM policy as baseline.",
+        "title": "LADDER: A Human-Level Bidding Agent for Large-Scale Real-Time Online\n  Auctions",
+        "first_mention": "Figures 4 shows the performance comparisons between LADDER and baseline. We normalized all data in the figures into range [0,1] for privacy. Figure 4(a) shows the rewards (profits) comparison, where we can see that LADDER incurred huge losses on the first day in the imitation phase because it tended to bid up all requests for exploration. It soon turned into the second phase and caught up with the baseline the next day, and eventually outperformed the baseline since day 5. Notice that the Q curve well fitted the curve of rewards of LADDER. There was a retreat at day 8 because we launched LADDER that day, therefore the experimental data were mixed up."
       }
     }
   ]
