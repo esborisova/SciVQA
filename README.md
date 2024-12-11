@@ -18,9 +18,9 @@ The SciVQA comprises 3000 images in .png format and can be dowloaded from Zenodo
 
 | Source data | N of unique papers | N of chart images | N of QA pairs | 
 |-------------|--------------------|-------------------|---------------|
-|  ACL-Fig    |   530              |   948             |               | 
-|  SciGraphQA |   1750             |   2052            |               | 
-|  **Total**  |   **2280**         |   **3000**        |               | 
+|  ACL-Fig    |   508              |   906             |               | 
+|  SciGraphQA |   1781             |   2094            |               | 
+|  **Total**  |   **2289**         |   **3000**        |               | 
 
 
 | Chart types        | N in ACL-Fig subset| N in SciGraphQA subset| 
