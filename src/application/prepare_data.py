@@ -16,6 +16,7 @@ exclude_chart_types = [
     "natural images",
     "word cloud",
     "NLP text_grammar_eg",
+    "map",
 ]
 
 
