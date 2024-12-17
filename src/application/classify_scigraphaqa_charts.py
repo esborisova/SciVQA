@@ -30,7 +30,7 @@ def main():
         )
         img = PIL.Image.open(image_path)
 
-        prompt = f'Task: You are given an image of a figure and its caption extracted from a scholarly paper. Classify this figure into one of the following types: bar chart, box plot, confusion matrix, line chart, map, pie chart, scatter plot, pareto chart, venn diagram, architecture diagram, neural networks, trees.\nCaption: {scigraph_subset["caption"][index]}\nOutput format: JSON, with a single object containing the figure type.\nExample: [{{"type": ""}}].'
+        prompt = f'Task: You are given an image of a figure and its caption extracted from a scholarly paper. Classify this figure into one of the following types: bar chart, box plot, confusion matrix, line chart, pie chart, scatter plot, pareto chart, venn diagram, architecture diagram, neural networks, trees.\nCaption: {scigraph_subset["caption"][index]}\nOutput format: JSON, with a single object containing the figure type.\nExample: [{{"type": ""}}].'
         result = run_gemini(model, prompt, img)
 
         chart_ids.append(scigraph_subset["chart_id"][index])
