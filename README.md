@@ -33,7 +33,6 @@ The SciVQA comprises 3000 images in .png format and can be dowloaded from Zenodo
 |venn diagram        |                    |                       |
 |confusion matrix    |                    |                       |
 |pareto              |                    |                       |
-|map                 |                    |                       |
 |neural networks     |                    |                       |              
 |architecture diagram|                    |                       |
 |tree                |                    |                       |              
@@ -50,7 +49,7 @@ The SciVQA comprises 3000 images in .png format and can be dowloaded from Zenodo
 |closed-ended finite answer set binary visual         |                    |                       | 
 |closed-ended finite answer set binary non-visual     |                    |                       | 
 |closed-ended finite answer set non-binary visual     |                    |                       | 
-|closed-ended finite answer set none-binary non-visual|                    |                       | 
+|closed-ended finite answer set non-binary non-visual |                    |                       | 
 |unanswerable                                         |                    |                       |
 
 
@@ -61,5 +60,5 @@ Details on the papers distribution per year and venue are availabel under [utils
 # Contributors
 
 Ekaterina Borisova (DFKI)
-
+Nikolas Rauscher (DFKI)
 Raia Abu Ahmad (DFKI)
