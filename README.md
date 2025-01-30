@@ -60,5 +60,7 @@ Details on the papers distribution per year and venue are availabel under [utils
 # Contributors
 
 Ekaterina Borisova (DFKI)
+
 Nikolas Rauscher (DFKI)
+
 Raia Abu Ahmad (DFKI)
