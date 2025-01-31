@@ -14,7 +14,23 @@ The SciVQA is a corpus of figure images extracted from scientific publications i
 
 The SciVQA comprises 3000 images in .png format each assotiated with 7 QA pairs. The dataset can be dowloaded from Zenodo or HF: links to be added...
 
-## Dataset statistics
+# QA pair types schema
+
+<img src="QA pair types.png" alt="drawing" width="550"/>
+
+
+| QA pair type                                       | Definition         |
+|-----------------------------------------------------|--------------------|
+|closed-ended question                                | possible to answer it based only on a given data source (an image and a caption), i.e., no additional resources are required.|   
+|question with an infinite answer set                 | does not have any predefined answer options.|                   
+|question with a finite answer set                    | associated with a limited range of answer options.|                   
+|binary question                                      | requires a "yes/no" or "true/false" answer. |                    
+|non-binary question                                  | requires to choose from a set of M predefined answer options where one or more are correct. |            
+|visual question                                      | addresses or incorporates information on visual attributes of a figure such as shape, size, position, height, direction or colour.|    
+|non-visual question                                  | does not involve any visual aspects of a figure.|   
+|unanswerable                                         | not possible to infer an answer based solely on a given data source (e.g., full paper text is required, values are not visible/missing, etc.).|        
+
+# Dataset statistics
 
 | Source data | N of unique papers | N of chart images | N of QA pairs | 
 |-------------|--------------------|-------------------|---------------|
