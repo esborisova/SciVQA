@@ -4,7 +4,6 @@ import os.path
 import pandas as pd
 from typing import List
 from evaluate import load
-import json
 from rouge_score import rouge_scorer
 
 def rouge(predictions: List[str], references: List[str], r_type: str = ""):
