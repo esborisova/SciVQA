@@ -14,7 +14,7 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
 
 # QA pair types schema
 
-<img src="QA pair types.png" alt="drawing" width="550"/>
+<img src="qa_pairs_schema.png" alt="drawing" width="550"/>
 
 - **Closed-ended** - it is possible to answer a question based only on a given data source, i.e., an image or an image and a caption. No additional resources such as the main text of a publication, other documents/figures/tables, etc. are required.
 - **Unanswerable** - it is not possible to infer an answer based solely on a given data source.
