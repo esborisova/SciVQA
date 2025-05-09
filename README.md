@@ -1,77 +1,32 @@
 # <img src="SciVQA_logo.gif" alt="drawing" width="300"/>
-
+**Scientific Visual Question Answering (SciVQA)** shared task was orginised as part of the [Scholarly Document Processing workshop (SDP)](https://sdproc.org/2025/) at ALC 2025. In this challenge, participants developed multimodal QA systems using images of scientific figures, their captions, associated natural language QA pairs, and optionally additional metadata. This repository stores the code used for constructing the SciVQA dataset and developing the competition baseline. 
 
 # Data
 
-The SciVQA is a corpus of figure images extracted from scientific publications in Computer Science and Computational Linguistics available in arXiv and ACL Anthology. SciVQA is a subset of the two existing datasets:
-- __ACL-Fig: A Dataset for Scientific Figure Classification.__
+The SciVQA dataset comprises **3000** images of real-world figures extracted from English scientific publications in Computer Science and Computational Linguistics available in arXiv and ACL Anthology. The images are collected from the two pre-existing datasets: 
+- __ACL-Fig <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2301.12293'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/citeseerx/ACL-fig'><img src='https://img.shields.io/badge/Dataset-gold'></a>__
 
-  _Zeba Karishma, Shaurya Rohatgi, Kavya Shrinivas Puranik, Jian Wu, C. Lee Giles._ <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2301.12293'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/citeseerx/ACL-fig'><img src='https://img.shields.io/badge/Dataset-gold'></a>
+- __SciGraphQA <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2308.03349'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0'><img src='https://img.shields.io/badge/Dataset-gold'></a>__
 
-- __SciGraphQA: A Large-Scale Synthetic Multi-Turn Question-Answering Dataset for Scientific Graphs.__
+Each figure is availabe as PNG and associated with 7 QA pairs according to the custom schema (see below). All figures are automatically annotated using the Gemini 1.5-flash model and then manually validated by graduate students with Computational Linguistics background. SciVQA contains **21000** QA pairs in total. The language of all QA pairs is English. 
 
-  _Shengzhi Li, Nima Tajbakhsh._ <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2308.03349'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0'><img src='https://img.shields.io/badge/Dataset-gold'></a>
-
-The SciVQA comprises 3000 images in .png format each assotiated with 7 QA pairs. The dataset can be dowloaded from Zenodo or HF: links to be added...
+**The dataset is publicly available on [Hugging Face](https://huggingface.co/datasets/katebor/SciVQA).** 
 
 # QA pair types schema
 
 <img src="QA pair types.png" alt="drawing" width="550"/>
 
+- **Closed-ended** - it is possible to answer a question based only on a given data source, i.e., an image or an image and a caption. No additional resources such as the main text of a publication, other documents/figures/tables, etc. are required.
+- **Unanswerable** - it is not possible to infer an answer based solely on a given data source.
+- **Infinite answer set** - there are no predefined answer options., e.g., "What is the sum of Y and Z?".
+- **Finite answer set** - associated with a limited range of answer options. Such QA pairs fall into two subcategories:
+  - **Binary** - require a yes/no or true/false answer, e.g., "Is the percentage of positive tweets equal to 15%?".
+  - **Non-binary** - require to choose from a set of **four** predefined answer options where one or more are correct, e.g., "What is the maximum value of the green bar at the threshold equal to 10?" Answer options: "A: 5, B: 10, C: 300, D: None of the above".
+- **Visual** - address or incorporate information on one or more of the **six visual attributes** of a figure, i.e., *shape*, *size*, *position*, *height*, *direction* or *colour*. E.g., "In the bottom left figure, what is the value of the blue line at an AL of 6?". Here the visual aspects are: position (bottom left), colour (blue), and shape (line).
+- **Non-visual** - do not involve any of the six visual aspects of a figure defined in our schema, e.g., "What is the minimum value of X?".
 
-| QA pair type                                       | Definition         |
-|-----------------------------------------------------|--------------------|
-|closed-ended question                                | possible to answer it based only on a given data source (an image and a caption), i.e., no additional resources are required.|   
-|question with an infinite answer set                 | does not have any predefined answer options.|                   
-|question with a finite answer set                    | associated with a limited range of answer options.|                   
-|binary question                                      | requires a "yes/no" or "true/false" answer. |                    
-|non-binary question                                  | requires to choose from a set of M predefined answer options where one or more are correct. |            
-|visual question                                      | addresses or incorporates information on visual attributes of a figure such as shape, size, position, height, direction or colour.|    
-|non-visual question                                  | does not involve any visual aspects of a figure.|   
-|unanswerable                                         | not possible to infer an answer based solely on a given data source (e.g., full paper text is required, values are not visible/missing, etc.).|        
+# Repository structure
 
-# Dataset statistics
-
-| Source data | N of unique papers | N of chart images | N of QA pairs | 
-|-------------|--------------------|-------------------|---------------|
-|  ACL-Fig    |   508              |   906             |               | 
-|  SciGraphQA |   1781             |   2094            |               | 
-|  **Total**  |   **2289**         |   **3000**        |               | 
-
-
-| Chart types        | N in ACL-Fig subset| N in SciGraphQA subset| 
-|--------------------|--------------------|-----------------------|
-|line chart          |                    |                       |
-|bar chart           |                    |                       |
-|pie chart           |                    |                       |
-|box plot            |                    |                       |
-|scatter plot        |                    |                       |
-|venn diagram        |                    |                       |
-|confusion matrix    |                    |                       |
-|pareto              |                    |                       |
-|neural networks     |                    |                       |              
-|architecture diagram|                    |                       |
-|tree                |                    |                       |              
-|graph               |                    |                       |
-|heat map?           |                    |                       |
-|histogram?          |                    |                       |
- 
-
-
-| QA pair types                                       | N in ACL-Fig subset| N in SciGraphQA subset| 
-|-----------------------------------------------------|--------------------|-----------------------|
-|closed-ended infinite answer set visual              |                    |                       |   
-|closed-ended infinite answer set non-visual          |                    |                       | 
-|closed-ended finite answer set binary visual         |                    |                       | 
-|closed-ended finite answer set binary non-visual     |                    |                       | 
-|closed-ended finite answer set non-binary visual     |                    |                       | 
-|closed-ended finite answer set non-binary non-visual |                    |                       | 
-|unanswerable                                         |                    |                       |
-
-
-
-Details on the papers distribution per year and venue are availabel under [utils](https://github.com/esborisova/SciVQA/blob/main/src/utils/papers_dist_3000.png).
-**Note:** Currently all images and metadata files are stored on Pegasus.
 
 # Cite
-
+TBA
