@@ -3,7 +3,7 @@
 
 # Data
 
-The SciVQA dataset comprises **3000** images of real-world figures extracted from English scientific publications in Computer Science and Computational Linguistics available in arXiv and ACL Anthology. The images are collected from the two pre-existing datasets: 
+The SciVQA dataset comprises **3000** images of real-world figures extracted from English scientific publications in Computational Linguistics available in arXiv and ACL Anthology. The images are collected from the two pre-existing datasets: 
 - __ACL-Fig <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2301.12293'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/citeseerx/ACL-fig'><img src='https://img.shields.io/badge/Dataset-gold'></a>__
 
 - __SciGraphQA <img src='https://img.shields.io/badge/arXiv-2023-darkred'> <a href='https://arxiv.org/abs/2308.03349'><img src='https://img.shields.io/badge/PDF-blue'></a> <a href='https://huggingface.co/datasets/alexshengzhili/SciGraphQA-295K-train?row=0'><img src='https://img.shields.io/badge/Dataset-gold'></a>__
