@@ -1,5 +1,7 @@
 # <img src="SciVQA_logo.gif" alt="drawing" width="300"/>
-**Scientific Visual Question Answering (SciVQA)** shared task was orginised as part of the [Scholarly Document Processing workshop (SDP)](https://sdproc.org/2025/) at ALC 2025. In this challenge, participants developed multimodal QA systems using images of scientific figures, their captions, associated natural language QA pairs, and optionally additional metadata. This repository stores the code used for constructing the SciVQA dataset and developing the competition baseline. 
+**Scientific Visual Question Answering (SciVQA)** shared task was orginised as part of the [Scholarly Document Processing workshop (SDP)](https://sdproc.org/2025/) at ALC 2025. In this challenge, participants developed multimodal QA systems using images of scientific figures, their captions, associated natural language QA pairs, and optionally additional metadata. The competition was hosted on the [Codabench platform](https://www.codabench.org/competitions/5904/). 
+
+This repository stores the code used for constructing the SciVQA dataset and developing the competition baseline. 
 
 # Data
 
