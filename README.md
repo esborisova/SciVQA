@@ -29,6 +29,14 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
 
 # Repository structure
 
+``` ├── data               # qa prompts and annotation guidelines
+    ├── src               
+    │   ├── data_pred      # data preparation scripts
+    │   ├── baseline       # 
+    │   ├── eval           # scoring script      
+    └──         
+```
+
 
 # Cite
 TBA
