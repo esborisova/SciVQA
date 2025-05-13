@@ -28,8 +28,8 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
 - **Non-visual** - do not involve any of the six visual aspects of a figure defined in our schema, e.g., "What is the minimum value of X?".
 
 # Repository structure
-
-``` ├── data               # qa prompts and annotation guidelines
+```
+    ├── data               # qa prompts and annotation guidelines
     ├── src               
     │   ├── data_pred      # data preparation scripts
     │   ├── baseline       # 
