@@ -1,7 +1,6 @@
 import pandas as pd
 import os
-import json
-from ..utils.post_processing import str_to_json
+from add_figure_types import str_to_json
 
 
 def main():
@@ -19,7 +18,7 @@ def main():
     merged_df = pd.merge(
         df,
         subset,
-        on=["chart_id", "caption", "qa_pair_type"],
+        on=["figure_id", "caption", "qa_pair_type"],
         how="left",
         suffixes=("", "_new"),
     )

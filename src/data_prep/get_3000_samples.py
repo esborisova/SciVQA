@@ -1,8 +1,39 @@
 """Create a corpus of 3K documents for annotation. 
-Since ACL-fig contains only 948 intries, we randomly sample only data from SciGraphQA"""
+Since ACL-fig contains only 948 intries, we randomly sample only data from SciGraphQA."""
 
 import pandas as pd
-from ..utils.data_preprocessing import copy_files
+import shutil
+import os
+from typing import List
+
+
+def copy_files(
+    rootdir: str,
+    target_files: List[str],
+    subdirs: List[str] = None,
+    dest_dir: str = None,
+):
+    """
+    Copy specified files from rootdir (and optionally subdirs) to dest_dir.
+
+    Args:
+        rootdir (str): The root directory to search for files.
+        target_files (List[str]): A list of file names to copy.
+        subdirs (List[str]): A list of subdirectories to search within rootdir.
+        dest_dir (str): The destination directory where files should be copied.
+    """
+    if subdirs:
+        for subdir in subdirs:
+            current_dir = os.path.join(rootdir, subdir)
+            for file_name in target_files:
+                source_file = os.path.join(current_dir, file_name)
+                if os.path.exists(source_file):
+                    shutil.copy2(source_file, dest_dir)
+    else:
+        for file_name in target_files:
+            source_file = os.path.join(rootdir, file_name)
+            if os.path.exists(source_file):
+                shutil.copy2(source_file, dest_dir)
 
 
 def main():
