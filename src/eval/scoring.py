@@ -57,8 +57,8 @@ def main():
     output_filename = os.path.join(args.output_file_path, "scores.txt")
     output_file = open(output_filename, "w")
 
-    gold_df = pd.read_json(args.gold_file)
-    pred_df = pd.read_csv(args.pred_file)
+    gold_df = pd.read_csv(args.gold_file, keep_default_na=False)
+    pred_df = pd.read_csv(args.pred_file, keep_default_na=False)
 
     if len(gold_df) != len(pred_df):
         raise ValueError("The lengths of references and predictions do not match.")
