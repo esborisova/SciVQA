@@ -32,7 +32,7 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
     ├── data               # qa prompts, annotation guidelines, csv files with human answers and predictions from the baseline
     ├── src               
     │   ├── data_pred      # data preparation scripts
-    │   ├── baseline       # 
+    │   ├── baseline       # code for baseline
     │   ├── eval           # scoring script      
     └──         
 ```
