@@ -39,4 +39,12 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
 
 
 # Cite
-TBA
+```bibtex
+@inproceedings{borisova-scivqa-2025,
+  title = "{SciVQA} 2025: Overview of the First Scientific Visual Question Answering Shared Task",
+  author = "Borisova, Ekaterina and Rauscher, Nikolas and Rehm, Georg",
+  booktitle = "Proceedings of the 5th Workshop on Scholarly  Document Processing (SDP)",
+  year = "2025",
+  address = "Vienna, Austria",
+  comment = "Under review" }
+```
