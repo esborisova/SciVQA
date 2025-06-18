@@ -9,13 +9,15 @@ from tqdm import tqdm
 import time
 import re
 from datetime import datetime
+import argparse
 
 class DynamicFewShotBaseline:
-    def __init__(self, training_data_path, api_key=None, model="gpt-4.1-mini", debug_log_file=None, prompt_log_file=None):
+    def __init__(self, training_data_path, api_key=None, model="gpt-4.1-mini", debug_log_file=None, prompt_log_file=None, cleaning_log_file=None):
         # Initialize OpenAI client
         self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OpenAI API key is required. Set OPENAI_API_KEY environment variable or pass it explicitly.")
+        
         self.client = OpenAI(api_key=self.api_key)
         self.model = model
         self.raw_training_samples = self._load_training_data(training_data_path)
@@ -24,9 +26,9 @@ class DynamicFewShotBaseline:
         self.training_samples_by_qa_type = self._preprocess_training_data()
         self.debug_log_file = debug_log_file
         self.prompt_log_file = prompt_log_file
+        self.cleaning_log_file = cleaning_log_file or "logs/unanswerable_cleaning_log.jsonl"
 
-        # Create log directories if they don't exist
-        for log_file in [self.debug_log_file, self.prompt_log_file]:
+        for log_file in [self.debug_log_file, self.prompt_log_file, self.cleaning_log_file]:
             if log_file:
                 log_dir = os.path.dirname(log_file)
                 if log_dir and not os.path.exists(log_dir):
@@ -63,7 +65,7 @@ class DynamicFewShotBaseline:
                 processed_data[qa_type].append(sample)
         return processed_data
 
-    def _format_example_for_prompt(self, sample, example_number):
+    def _format_example_for_prompt(self, sample, example_number, include_qa_type: bool = True):
         """Format example."""
         question_text = sample.get('question', '')
         answer_text = sample.get('answer', '')
@@ -81,16 +83,16 @@ class DynamicFewShotBaseline:
         elif current_qa_pair_type in ["closed-ended finite answer set non-binary visual", "closed-ended finite answer set non-binary non-visual"]:
             if "," in answer_text:
                 answer_text = re.sub(r',\s*', ',', answer_text)
-        elif current_qa_pair_type == "unanswerable":
-            answer_text = "It is not possible to answer this question based only on the provided data."
 
         # Header
         example_str = f"Example {example_number}:\n"
         # Meta
         example_str += f"Figure Caption: {caption}\n"
         example_str += f"Figure Type: {figure_type}\n"
-        example_str += f"Question Type: {current_qa_pair_type}\n"
+        if include_qa_type:
+            example_str += f"Question Type: {current_qa_pair_type}\n"
         example_str += f"Question: {question_text}\n"
+        
         # Options
         if answer_options_list and len(answer_options_list) > 0 and current_qa_pair_type in ["closed-ended finite answer set non-binary visual", "closed-ended finite answer set non-binary non-visual"]:
             example_str += "Answer Options:\n"
@@ -98,42 +100,87 @@ class DynamicFewShotBaseline:
                 for key, value in option_set.items():
                     if value: 
                         example_str += f"{key}: {value}\n"
+        
         # Correct
         example_str += f"\nCorrect answer: {answer_text}\n"
+        
         return example_str
 
-    def _get_dynamic_examples(self, current_qa_pair_type, current_figure_type, num_examples=8):
+    def _get_dynamic_examples(self, current_qa_pair_type, current_figure_type, num_examples=5, mix_random_nonmatching: bool = False, include_qa_type: bool = True):
         """Get few-shot examples."""
-        if not current_qa_pair_type or current_qa_pair_type not in self.training_samples_by_qa_type:
-            return ""
+        if not mix_random_nonmatching:
+            if current_qa_pair_type not in self.training_samples_by_qa_type:
+                return ""
+            candidate_samples = self.training_samples_by_qa_type[current_qa_pair_type]
+            if not candidate_samples:
+                return ""
 
-        candidate_samples = self.training_samples_by_qa_type[current_qa_pair_type]
-        if not candidate_samples:
-            return ""
+            preferred_samples = [s for s in candidate_samples if s.get('figure_type') == current_figure_type]
+            other_samples = [s for s in candidate_samples if s.get('figure_type') != current_figure_type]
 
-        # Same type
-        preferred_samples = [s for s in candidate_samples if s.get('figure_type') == current_figure_type]
-        other_samples = [s for s in candidate_samples if s.get('figure_type') != current_figure_type]
-        # Select samples
-        selected_samples = []
-        if preferred_samples:
-            take_from_preferred = min(len(preferred_samples), num_examples)
-            selected_samples.extend(random.sample(preferred_samples, take_from_preferred))
-        remaining_needed = num_examples - len(selected_samples)
-        if remaining_needed > 0 and other_samples:
-            take_from_other = min(len(other_samples), remaining_needed)
-            selected_samples.extend(random.sample(other_samples, take_from_other))
+            selected_samples = []
+            if preferred_samples:
+                take_from_preferred = min(len(preferred_samples), num_examples)
+                selected_samples.extend(random.sample(preferred_samples, take_from_preferred))
+
+            remaining_needed = num_examples - len(selected_samples)
+            if remaining_needed > 0 and other_samples:
+                take_from_other = min(len(other_samples), remaining_needed)
+                selected_samples.extend(random.sample(other_samples, take_from_other))
+        else:
+            # logic for unanswerable
+            unanswerable_samples_all = self.training_samples_by_qa_type.get("unanswerable", [])
+            # split by figure-type priority
+            ua_pref = [s for s in unanswerable_samples_all if s.get("figure_type") == current_figure_type]
+            ua_other = [s for s in unanswerable_samples_all if s.get("figure_type") != current_figure_type]
+
+            # collect all other qa-types
+            other_type_samples_all = []
+            for qa_type, samples in self.training_samples_by_qa_type.items():
+                if qa_type != "unanswerable":
+                    other_type_samples_all.extend(samples)
+
+            ot_pref = [s for s in other_type_samples_all if s.get("figure_type") == current_figure_type]
+            ot_other = [s for s in other_type_samples_all if s.get("figure_type") != current_figure_type]
+
+            selected_samples = []
+
+            # 2 unanswerable
+            ua_needed = min(2, len(ua_pref) + len(ua_other))
+            if ua_pref:
+                take = min(len(ua_pref), ua_needed)
+                selected_samples.extend(random.sample(ua_pref, take))
+                ua_needed -= take
+            if ua_needed > 0 and ua_other:
+                selected_samples.extend(random.sample(ua_other, min(ua_needed, len(ua_other))))
+
+            # remaining slots with other types
+            remaining_needed = num_examples - len(selected_samples)
+            if remaining_needed > 0:
+                pool = []
+                if ot_pref:
+                    take = min(len(ot_pref), remaining_needed)
+                    pool.extend(random.sample(ot_pref, take))
+                    remaining_needed -= take
+                if remaining_needed > 0 and ot_other:
+                    pool.extend(random.sample(ot_other, min(remaining_needed, len(ot_other))))
+                selected_samples.extend(pool)
+
         if not selected_samples:
             return ""
+            
         random.shuffle(selected_samples)
+
         # Format
         example_prompts = []
         for i, sample in enumerate(selected_samples):
-            example_prompts.append(self._format_example_for_prompt(sample, i + 1))
+            example_prompts.append(self._format_example_for_prompt(sample, i + 1, include_qa_type=include_qa_type))
+        
         return "\n".join(example_prompts)
 
-    def generate_prompt(self, question, caption, figure_type, answer_options=None, qa_pair_type=None):
+    def generate_prompt(self, question, caption, figure_type, answer_options=None, qa_pair_type=None, hide_qa_pair_type: bool = False):
         """Build prompts."""
+        
         # Sys prompt
         base_system_prompt = """You are an expert scientific figure analyst specializing in academic publications.
 Your task is to answer questions about scientific figures and their captions accurately and concisely.
@@ -169,9 +216,17 @@ IMPORTANT: Your response should ONLY contain the answer in the correct format as
 Do NOT include any additional text, explanations, comments, or contextual information.
 Your answer must be based solely on the information visible in the figure and its provided caption.
 """
-        # Examples
-        dynamic_examples_str = self._get_dynamic_examples(qa_pair_type, figure_type, num_examples=5)
-        # Attach examples
+ 
+        hide_qa = qa_pair_type == "unanswerable"
+        dynamic_examples_str = self._get_dynamic_examples(
+            qa_pair_type,
+            figure_type,
+            num_examples=5,
+            mix_random_nonmatching=hide_qa,
+            include_qa_type=not hide_qa,
+        )
+
+        # Add examples to the system prompt
         full_system_prompt = base_system_prompt
         if dynamic_examples_str:
             full_system_prompt += (
@@ -179,6 +234,7 @@ Your answer must be based solely on the information visible in the figure and it
                 "Study these examples carefully to understand the expected answer format. "
                 "Your question will be in the user message after these examples:\n\n"
             ) + dynamic_examples_str
+        
         # Type rules
         if qa_pair_type:
             if qa_pair_type in ["closed-ended finite answer set binary visual", "closed-ended finite answer set binary non-visual"]:
@@ -188,12 +244,16 @@ Your answer must be based solely on the information visible in the figure and it
             elif qa_pair_type in ["closed-ended infinite answer set visual", "closed-ended infinite answer set non-visual"]:
                 full_system_prompt += "\n\nREMEMBER: Your answer must be concise and direct, with no explanatory text."
             elif qa_pair_type == "unanswerable":
-                full_system_prompt += "\n\nREMEMBER: Your answer must be EXACTLY: 'It is not possible to answer this question based only on the provided data.'"
+                full_system_prompt += "\n\nREMEMBER: Decide if the question is unanswerable based on the figure and caption. If it is, respond with 'It is not possible to answer this question based only on the provided data.'. If it is not, respond with the correct answer."
+
         # Build user prompt
         user_prompt_text = f"Figure Caption: {caption}\nFigure Type: {figure_type}\n"
-        if qa_pair_type:
+        
+        if qa_pair_type and not hide_qa_pair_type:
             user_prompt_text += f"Question Type: {qa_pair_type}\n"
+        
         user_prompt_text += f"Question: {question}\n"
+        
         if answer_options and len(answer_options) > 0:
             options_text_build = "\nAnswer Options:"
             for option_list_item in answer_options: 
@@ -201,69 +261,59 @@ Your answer must be based solely on the information visible in the figure and it
                     if value:
                         options_text_build += f"\n{key}: {value}"
             user_prompt_text += options_text_build
+
         return full_system_prompt, user_prompt_text
 
-    def _postprocess_answer(self, predicted_answer, answer_options, qa_pair_type):
-        """Post-process the raw predicted answer based on question type."""
-        # Use regular expressions for matching
-        import re
-        if qa_pair_type:
-            # Binary questions: normalize to 'Yes' or 'No'
-            if qa_pair_type in [
-                "closed-ended finite answer set binary visual",
-                "closed-ended finite answer set binary non-visual"
-            ]:
-                if re.search(r'yes', predicted_answer.lower()):
-                    return "Yes"
-                elif re.search(r'no', predicted_answer.lower()):
-                    return "No"
-            # Non-binary with finite options: extract letter codes
-            if qa_pair_type in [
-                "closed-ended finite answer set non-binary visual",
-                "closed-ended finite answer set non-binary non-visual"
-            ] and answer_options:
-                option_match = re.search(r'([A-D](,[A-D])*)', predicted_answer.replace(" ", ""))
-                if option_match:
-                    return option_match.group(1)
-            # Infinite answer set: strip intros and clean commas
-            if qa_pair_type in [
-                "closed-ended infinite answer set visual",
-                "closed-ended infinite answer set non-visual"
-            ]:
-                intro_pattern = re.compile(
-                    r'^(the\s+answer\s+is\s+|the\s+value\s+is\s+)',
-                    re.IGNORECASE
-                )
-                cleaned = intro_pattern.sub('', predicted_answer)
-                cleaned = re.sub(r',\s+', ',', cleaned).strip()
-                return cleaned
-            # Unanswerable: fixed phrase
-            if qa_pair_type == "unanswerable":
-                return "It is not possible to answer this question based only on the provided data."
-        return predicted_answer
+    def _log_cleaning_event(self, instance_id, raw_answer, cleaned_answer, qa_pair_type):
+        """Write a json line recording a cleaning operation (only used for unanswerable)."""
+        if not self.cleaning_log_file:
+            return
+        entry = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "instance_id": instance_id,
+            "qa_pair_type": qa_pair_type,
+            "raw_answer": raw_answer,
+            "cleaned_answer": cleaned_answer,
+        }
+        try:
+            with open(self.cleaning_log_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(entry) + "\n")
+        except Exception as e:
+            print(f"Warning: could not write cleaning log: {e}")
 
-    def answer_question(self, image_path, question, caption, figure_type, answer_options=None, qa_pair_type=None):
+    def _is_answer_indicating_unanswerable(self, answer: str, threshold: float = 0.4) -> bool:
+        """Check if answer is similar to standard unanswerable answer using token overlap."""
+        # Normalize both texts: lowercase, remove punctuation
+        answer = answer.lower().strip()
+        standard = "it is not possible to answer this question based only on the provided data"
+        
+        answer_tokens = set(answer.split())
+        standard_tokens = set(standard.split())
+        
+        overlap = len(answer_tokens.intersection(standard_tokens))
+        similarity = overlap / len(standard_tokens)
+        
+        return similarity >= threshold
+
+    def answer_question(self, image_path, question, caption, figure_type, answer_options=None, qa_pair_type=None, instance_id=None):
         """Answers a question using GPT-4.1-mini with dynamic few-shot examples and logs prompts/responses if configured."""
         base64_image = self.encode_image(image_path)
 
-        # Generate prompts using shared method
+        hide_qa = qa_pair_type == "unanswerable"
         full_system_prompt, user_prompt_text = self.generate_prompt(
-            question, caption, figure_type, answer_options, qa_pair_type
+            question, caption, figure_type, answer_options, qa_pair_type, hide_qa_pair_type=hide_qa
         )
-
         # Format prompt output for logs and terminal
-        prompt_output = f"\n============ DYNAMICALLY GENERATED PROMPTS ============\n"
-        prompt_output += f"\n--- SYSTEM PROMPT ---\n"
-        prompt_output += full_system_prompt
-        prompt_output += f"\n\n--- USER PROMPT ---\n"
-        prompt_output += user_prompt_text
-        prompt_output += f"\n\n============ END OF PROMPTS ============\n"
-
-        # Print generated prompts
-        print(prompt_output)
-        
-        # Save prompts to text file if configured
         if self.prompt_log_file:
+            prompt_output = f"\n============ DYNAMICALLY GENERATED PROMPTS ============\n"
+            prompt_output += f"\n--- SYSTEM PROMPT ---\n"
+            prompt_output += full_system_prompt
+            prompt_output += f"\n\n--- USER PROMPT ---\n"
+            prompt_output += user_prompt_text
+            prompt_output += f"\n\n============ END OF PROMPTS ============\n"
+        # Print generated prompts
+            print(prompt_output)
+            
             timestamp = datetime.utcnow().isoformat() + "Z"
             with open(self.prompt_log_file, 'a', encoding='utf-8') as f_prompt:
                 f_prompt.write(f"\n\n=== PROMPT LOG [{timestamp}] ===\n")
@@ -307,10 +357,33 @@ Your answer must be based solely on the information visible in the figure and it
                 temperature=0.0
             )
             
-            predicted_answer = response.choices[0].message.content.strip()
-            
+            predicted_raw = response.choices[0].message.content.strip()
+            predicted_answer = predicted_raw
             # Post-process predicted answer
-            predicted_answer = self._postprocess_answer(predicted_answer, answer_options, qa_pair_type)
+            if qa_pair_type:
+                if qa_pair_type in ["closed-ended finite answer set binary visual", "closed-ended finite answer set binary non-visual"]:
+                    if re.search(r'yes', predicted_answer.lower()):
+                        predicted_answer = "Yes"
+                    elif re.search(r'no', predicted_answer.lower()):
+                        predicted_answer = "No"
+                
+                elif qa_pair_type in ["closed-ended finite answer set non-binary visual", "closed-ended finite answer set non-binary non-visual"] and answer_options:
+                    option_match = re.search(r'([A-D](,[A-D])*)', predicted_answer.replace(" ", ""))
+                    if option_match:
+                        predicted_answer = option_match.group(1)
+                
+                elif qa_pair_type in ["closed-ended infinite answer set visual", "closed-ended infinite answer set non-visual"]:
+                    intro_pattern = re.compile(r'^(the\s+answer\s+is\s+|the\s+value\s+is\s+)', re.IGNORECASE)
+                    predicted_answer = intro_pattern.sub('', predicted_answer)
+                    predicted_answer = re.sub(r',\s+', ',', predicted_answer)
+                    predicted_answer = predicted_answer.strip()
+                
+                elif qa_pair_type == "unanswerable":
+                    if self._is_answer_indicating_unanswerable(predicted_raw):
+                        predicted_answer = "It is not possible to answer this question based only on the provided data."
+            
+            if qa_pair_type == "unanswerable":
+                self._log_cleaning_event(instance_id, predicted_raw, predicted_answer, qa_pair_type)
             
             if log_entry and self.debug_log_file:
                 log_entry["model_response"] = predicted_answer
@@ -327,7 +400,7 @@ Your answer must be based solely on the information visible in the figure and it
                     f_log.write(json.dumps(log_entry) + '\n')
             return None
 
-    def process_dataset(self, input_file, output_file, images_dir, limit=None):
+    def process_dataset(self, input_file, output_file, images_dir, limit=None, unanswerable_only=False):
         """
         Process a dataset file and generate answers for all questions
         
@@ -336,60 +409,87 @@ Your answer must be based solely on the information visible in the figure and it
             output_file: Path to save the output JSON file with answers
             images_dir: Directory containing the figure images
             limit: Limit the number of samples to process (for testing)
+            unanswerable_only: If True, only recompute unanswerable questions and take other answers from backup file
         """
         # Load the dataset
         with open(input_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
-        # Limit the number of samples if specified
+        backup_predictions = {}
+        if unanswerable_only:
+            backup_file = "data/processed/test_predictions_backup.json"
+            try:
+                with open(backup_file, 'r', encoding='utf-8') as f:
+                    backup_data = json.load(f)
+                    for item in backup_data:
+                        key = f"{item['question']}_{item['image_file']}"
+                        backup_predictions[key] = item['predicted_answer']
+                print(f"Loaded {len(backup_predictions)} backup predictions from {backup_file}")
+            except Exception as e:
+                print(f"Error loading backup predictions: {e}")
+                return None
+        
         if limit:
             data = data[:limit]
         
-        # Process each sample sequentially
         results = []
+        unanswerable_count = 0
         
         for sample in tqdm(data, desc="Processing samples"):
-            # Extract image path
+            qa_pair_type = sample['qa_pair_type']
+            
+            if unanswerable_only and qa_pair_type != "unanswerable":
+                key = f"{sample['question']}_{sample['image_file']}"
+                if key in backup_predictions:
+                    result = sample.copy()
+                    result['predicted_answer'] = backup_predictions[key]
+                    results.append(result)
+                else:
+                    print(f"Warning: No backup prediction found for question: {sample['question'][:50]}...")
+                continue
+            
+            if qa_pair_type == "unanswerable":
+                unanswerable_count += 1
+            
             image_file = sample['image_file']
             split_name = "train" if "train" in input_file else "validation" if "validation" in input_file else "test"
             image_path = os.path.join(images_dir, split_name, image_file)
             
-            # Extract required fields
             question = sample['question']
             caption = sample['caption']
             figure_type = sample['figure_type']
             answer_options = sample['answer_options'] if 'answer_options' in sample else []
-            qa_pair_type = sample['qa_pair_type']
             
-            # Skip API call for unanswerable questions
-            if qa_pair_type == "unanswerable":
-                predicted_answer = "It is not possible to answer this question based only on the provided data."
-            else:
-                # Get answer
-                predicted_answer = self.answer_question(
-                    image_path, 
-                    question, 
-                    caption, 
-                    figure_type, 
-                    answer_options, 
-                    qa_pair_type
-                )
+            # Get answer from model
+            predicted_answer = self.answer_question(
+                image_path,
+                question,
+                caption,
+                figure_type,
+                answer_options,
+                qa_pair_type,
+                instance_id=sample.get("id")
+            )
             
             # Create result object
             result = sample.copy()
             result['predicted_answer'] = predicted_answer
             results.append(result)
         
-        # Save
+        # Save results
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2)
         
-        print(f"Processed {len(results)} samples. Results saved to {output_file}")
+        if unanswerable_only:
+            print(f"Processed {unanswerable_count} unanswerable questions out of {len(results)} total samples.")
+        else:
+            print(f"Processed {len(results)} samples.")
+        print(f"Results saved to {output_file}")
         
         return results
 
 def main():
-    # Check OpenAI API key
+    # Check if OpenAI API key is set
     if not os.environ.get("OPENAI_API_KEY"):
         print("Error: OPENAI_API_KEY environment variable is not set.")
         return
@@ -398,18 +498,27 @@ def main():
     model = DynamicFewShotBaseline(
         training_data_path="data/raw/train.json",
         debug_log_file="logs/dynamic_few_shot_debug.log",
-        prompt_log_file="logs/prompt_examples.txt"
+        prompt_log_file="logs/prompt_examples.txt",
+        cleaning_log_file="logs/unanswerable_cleaning_log.jsonl"
     )
     
     print("Starting test dataset processing...")
     print("All generated prompts will be saved in 'logs/prompt_examples.txt'.")
     
-    # Process the test dataset
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Process dataset with dynamic few-shot baseline')
+    parser.add_argument('--unanswerable-only', action='store_true',
+                      help='Only recompute unanswerable questions and take other answers from backup file')
+    parser.add_argument('--limit', type=int, default=None,
+                      help='Limit the number of samples to process (for testing)')
+    args = parser.parse_args()
+    
     model.process_dataset(
         input_file="data/raw/test.json",
         output_file="data/processed/test_predictions.json",
         images_dir="data/raw/images",
-        limit=None 
+        limit=args.limit,
+        unanswerable_only=args.unanswerable_only
     )
     
     print("Test dataset processing completed!")
