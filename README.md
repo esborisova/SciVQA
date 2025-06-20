@@ -46,5 +46,5 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
   booktitle = "Proceedings of the 5th Workshop on Scholarly  Document Processing (SDP)",
   year = "2025",
   address = "Vienna, Austria",
-  comment = "Under review" }
+  comment = "accepted" }
 ```
