@@ -1,0 +1,5 @@
+pandas==1.5.3
+regex==2022.10.31
+spacy==3.5.0
+spacy_fastlang==2.1.0
+tqdm==4.64.1
