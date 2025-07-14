@@ -12,7 +12,7 @@ The SciVQA dataset comprises **3000** images of real-world figures extracted fro
 
 Each figure is availabe as PNG and associated with 7 QA pairs according to the custom schema (see below). All figures are automatically annotated using the Gemini 1.5-flash model and then manually validated by graduate students with Computational Linguistics background. SciVQA contains **21000** QA pairs in total. The language of all QA pairs is English. 
 
-**The dataset is publicly available on [Hugging Face](https://huggingface.co/datasets/katebor/SciVQA).** 
+**The dataset is publicly available on 🤗[Hugging Face](https://huggingface.co/datasets/katebor/SciVQA).** 
 
 # QA pair types schema
 
