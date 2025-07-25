@@ -1,4 +1,7 @@
 # <img src="SciVQA_logo.gif" alt="drawing" width="300"/>
+
+<a href='https://aclanthology.org/2025.sdp-1.18/'><img src='https://img.shields.io/badge/ACL-2025-red'>
+
 **Scientific Visual Question Answering (SciVQA)** shared task was orginised as part of the [Scholarly Document Processing workshop (SDP)](https://sdproc.org/2025/) at ALC 2025. In this challenge, participants developed multimodal QA systems using images of scientific figures, their captions, associated natural language QA pairs, and optionally additional metadata. The competition was hosted on the [Codabench platform](https://www.codabench.org/competitions/5904/). 
 
 This repository stores the code used for constructing the SciVQA dataset and developing the competition baseline. 
@@ -40,11 +43,20 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
 
 # Cite
 ```bibtex
-@inproceedings{borisova-scivqa-2025,
-  title = "{SciVQA} 2025: Overview of the First Scientific Visual Question Answering Shared Task",
-  author = "Borisova, Ekaterina and Rauscher, Nikolas and Rehm, Georg",
-  booktitle = "Proceedings of the 5th Workshop on Scholarly  Document Processing (SDP)",
-  year = "2025",
-  address = "Vienna, Austria",
-  comment = "accepted" }
+@inproceedings{borisova-etal-2025-scivqa,
+    title = "{S}ci{VQA} 2025: Overview of the First Scientific Visual Question Answering Shared Task",
+    author = "Borisova, Ekaterina  and
+      Rauscher, Nikolas  and
+      Rehm, Georg",
+    editor = "Singh, Amanpreet",
+    booktitle = "Proceedings of the Fifth Workshop on Scholarly Document Processing (SDP 2025)",
+    month = jul,
+    year = "2025",
+    address = "Venice, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.sdp-1.18/",
+    pages = "182--210",
+    ISBN = "979-8-89176-265-7",
+    abstract = "This paper provides an overview of the First Scientific Visual Question Answering (SciVQA) shared task conducted as part of the Fifth Scholarly Document Processing workshop (SDP 2025). SciVQA aims to explore the capabilities of current multimodal large language models (MLLMs) in reasoning over figures from scholarly publications for question answering (QA). The main focus of the challenge is on closed-ended visual and non-visual QA pairs. We developed the novel SciVQA benchmark comprising 3,000 images of figures and a total of 21,000 QA pairs. The shared task received seven submissions, with the best performing system achieving an average F1 score of approx. 0.86 across ROUGE-1, ROUGE-L, and BertScore metrics. Participating teams explored various fine-tuning and prompting strategies, as well as augmenting the SciVQA dataset with out-of-domain data and incorporating relevant context from source publications. The findings indicate that while MLLMs demonstrate strong performance on SciVQA, they face challenges in visual reasoning and still fall behind human judgments."
+}
 ```
