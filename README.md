@@ -48,11 +48,19 @@ Each figure is availabe as PNG and associated with 7 QA pairs according to the c
     author = "Borisova, Ekaterina  and
       Rauscher, Nikolas  and
       Rehm, Georg",
-    editor = "Singh, Amanpreet",
+    editor = "Ghosal, Tirthankar  and
+      Mayr, Philipp  and
+      Singh, Amanpreet  and
+      Naik, Aakanksha  and
+      Rehm, Georg  and
+      Freitag, Dayne  and
+      Li, Dan  and
+      Schimmler, Sonja  and
+      De Waard, Anita",
     booktitle = "Proceedings of the Fifth Workshop on Scholarly Document Processing (SDP 2025)",
     month = jul,
     year = "2025",
-    address = "Venice, Austria",
+    address = "Vienna, Austria",
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2025.sdp-1.18/",
     pages = "182--210",
