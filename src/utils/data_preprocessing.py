@@ -4,6 +4,8 @@ import requests
 import re
 import json
 import hashlib
+import pandas as pd
+import uuid
 
 
 def download_file(url: str, filename: str) -> tuple:
@@ -94,3 +96,77 @@ def combine_id_versions(row):
             if isinstance(v, dict) and "version" in v:
                 combined.append(id_ + v["version"])
     return combined
+
+
+def generate_unique_id(existing_ids):
+    while True:
+        new_id = uuid.uuid4().hex
+        if new_id not in existing_ids:
+            existing_ids.add(new_id)
+            return new_id
+
+
+def extract_main_label(text: str):
+    """
+    Extract the main figure/table label, e.g.,
+    Figure 2(a) -> Figure2, Table 1.1(b) -> Table1.1,
+    TABLE I -> TableI
+    """
+    if pd.isna(text) or not isinstance(text, str):
+        return None
+
+    text = text.strip()
+
+    pattern = r"\b(Figure|Fig\.?|Table)\s*[\.:]?\s*([0-9]+(?:\.[0-9]+)*|[IVXLCDM]+)\s*(?:\(?[a-z]\)?)?"
+    match = re.search(pattern, text, flags=re.IGNORECASE)
+
+    if match:
+        label_type = match.group(1)
+        label_num = match.group(2)
+        if label_type.lower().startswith("fig"):
+            label_type = "Figure"
+        else:
+            label_type = "Table"
+        return f"{label_type}{label_num}"
+
+    return None
+
+
+def add_filenames(df: pd.DataFrame):
+    filenames = []
+
+    paper_counters = {}
+
+    for _, row in df.iterrows():
+        paper_id = row.get("paper_id")
+        if not paper_id:
+            filenames.append(None)
+            continue
+
+        label = extract_main_label(row.get("caption"))
+        if not label:
+            label = extract_main_label(row.get("footnote"))
+        if not label:
+            filenames.append(None)
+            continue
+
+        paper_counters.setdefault(paper_id, {})
+        paper_counters[paper_id].setdefault(label, 0)
+
+        paper_counters[paper_id][label] += 1
+        sub_index = paper_counters[paper_id][label]
+
+        filename = f"{paper_id}-{label}-{sub_index}.png"
+        filenames.append(filename)
+
+    return pd.Series(filenames)
+
+
+def extract_title_prefix(text: str):
+    if not text:
+        return None
+    text = text.lower()
+    m = re.match(r"(table|figure|fig)\s*[\.:]?\s*([0-9]+[a-z]?(?:\([a-z]\))?)", text)
+    if m:
+        return f"{m.group(1)} {m.group(2)}"
+    return None
