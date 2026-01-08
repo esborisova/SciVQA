@@ -1,4 +1,4 @@
-"""Collect images not extratced by PDFFigure but available in MinerU outputs."""
+"""Collect images not extracted by PDFFigure but available in MinerU outputs."""
 
 import pandas as pd
 import os
@@ -30,7 +30,7 @@ def main(args):
     }
 
     new_images = []
-    threshold = args.sim_threshold
+    threshold = float(args.sim_threshold)
 
     for root, _, files in os.walk(rootdir_mineru):
         for file in files:
