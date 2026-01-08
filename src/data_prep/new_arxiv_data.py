@@ -17,7 +17,7 @@ def main(args):
     arxiv = pd.read_pickle(args.arxiv_bulk)
     scivqa = pd.read_pickle(args.scivqa_data)  # already filtered data by licence
 
-    # filter by lucense
+    # filter by license
     arxiv = arxiv[arxiv["license"].isin(allowed_licences)]
     arxiv["license"].value_counts()
 
