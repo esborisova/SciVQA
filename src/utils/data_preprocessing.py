@@ -6,7 +6,8 @@ import json
 import hashlib
 import pandas as pd
 import uuid
-
+from rapidfuzz import fuzz, process
+from bs4 import BeautifulSoup
 
 def download_file(url: str, filename: str) -> tuple:
     try:
@@ -170,3 +171,112 @@ def extract_title_prefix(text: str):
     if m:
         return f"{m.group(1)} {m.group(2)}"
     return None
+
+
+def is_header(line: str):
+    match = re.match(r"^(#+)\s*(.*)", line)
+    return match.group(2) if match else None
+
+
+def add_paragraph(current_section: dict, paragraph_lines: list):
+    if paragraph_lines:
+        paragraph = " ".join(paragraph_lines)
+        current_section["paragraphs"].append(paragraph)
+        paragraph_lines.clear()
+
+
+def parse_markdown(md_text: str) -> list:
+    sections = []
+    current_section = {"title": "", "paragraphs": []}
+    paragraph_lines = []
+
+    for line in md_text.splitlines():
+        line = line.strip()
+        if not line:
+            add_paragraph(current_section, paragraph_lines)
+            continue
+
+        header_text = is_header(line)
+        if header_text is not None:
+            add_paragraph(current_section, paragraph_lines)
+            if current_section["title"] or current_section["paragraphs"]:
+                sections.append(current_section)
+            current_section = {"title": header_text, "paragraphs": []}
+        else:
+            paragraph_lines.append(line)
+
+    add_paragraph(current_section, paragraph_lines)
+    if current_section["title"] or current_section["paragraphs"]:
+        sections.append(current_section)
+    return sections
+
+
+def remove_tables(md_text: str) -> str:
+    soup = BeautifulSoup(md_text, "html.parser")
+    for table in soup.find_all("table"):
+        table.decompose()
+    return soup.get_text()
+
+
+def remove_captions(md_text: str, captions: list, threshold: float = 80) -> str:
+    md_text = md_text.replace("\r\n", "\n")
+    paragraphs = re.split(r"\n\s*\n", md_text)
+    kept_paragraphs = []
+    for para in paragraphs:
+        stripped = para.strip()
+        if not stripped:
+            continue
+        match = process.extractOne(
+            stripped.lower(),
+            captions,
+            scorer=fuzz.token_sort_ratio,
+        )
+        if match is None or match[1] < threshold:
+            kept_paragraphs.append(para)
+    cleaned_md = "\n\n".join(kept_paragraphs)
+    return cleaned_md
+
+
+def clean_md(md_text: str) -> str:
+    cleaned_text = re.sub(r"<!--.*?-->", "", md_text, flags=re.DOTALL)
+    # remove images
+    cleaned_text = re.sub(r"^!\[.*?\]\(.*?\)\s*$", "", cleaned_text, flags=re.MULTILINE)
+    cleaned_text = remove_tables(cleaned_text)
+    return cleaned_text
+
+
+def make_abstract_regex(N: int = 5) -> re.Pattern:
+    return re.compile(rf"^.{{0,{N}}}abstract.{{0,{N}}}$", re.IGNORECASE)
+
+
+def is_abstract_title(title: str, N: int) -> bool:
+    ABSTRACT_RE = make_abstract_regex(N=N)
+    title = title.strip()
+    return len(title) <= 20 and bool(ABSTRACT_RE.match(title.lower()))
+
+
+def drop_sections_before_abstract(parsed_sections: list, N: int) -> tuple:
+    for i, sec in enumerate(parsed_sections):
+        if is_abstract_title(sec.get("title", ""), N=N):
+            return parsed_sections[i:], True
+    return parsed_sections, False
+
+
+def build_section_json(parsed_sections: list, paper_path: str) -> list:
+    sections = []
+    for sec in parsed_sections:
+        content = []
+        for para in sec.get("paragraphs", []):
+            para = para.strip()
+            # clean from empty paragraphs
+            if not para:
+                continue
+            para_hash = get_paragraph_hash(paper_path, sec.get("title", ""), para)
+            content.append({"id": para_hash, "paragraph": para})
+        # clean from empty sections
+        if not content and not sec.get("title", "").strip():
+            continue
+        sections.append(
+            {"title": sec.get("title", ""), "content": content, "subsections": []}
+        )
+    return sections
