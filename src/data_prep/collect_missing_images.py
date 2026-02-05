@@ -36,7 +36,8 @@ def main(args):
         for file in files:
             # access file with mineru metadata per paper
             if file.endswith(".json") and "content" in file:
-                pid_match = [pid for pid in paper_ids if pid in file]
+                result = file.split("_")[0]
+                pid_match = [pid for pid in paper_ids if pid == result]
 
                 if not pid_match:
                     continue
